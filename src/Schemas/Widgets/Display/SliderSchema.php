@@ -1,7 +1,7 @@
 <?php declare(strict_types = 1);
 
 /**
- * AnalogValueSchema.php
+ * SliderSchema.php
  *
  * @license        More in license.md
  * @copyright      https://www.fastybird.com
@@ -26,15 +26,15 @@ use Neomerx\JsonApi;
  *
  * @author          Adam Kadlec <adam.kadlec@fastybird.com>
  *
- * @phpstan-extends DisplaySchema<Entities\Widgets\Display\IAnalogValue>
+ * @phpstan-extends DisplaySchema<Entities\Widgets\Display\ISlider>
  */
-final class AnalogValueSchema extends DisplaySchema
+final class SliderSchema extends DisplaySchema
 {
 
 	/**
 	 * Define entity schema type string
 	 */
-	public const SCHEMA_TYPE = 'ui-node/widget-display-analog-value';
+	public const SCHEMA_TYPE = 'ui-node/widget-display-slider';
 
 	/**
 	 * @return string
@@ -49,21 +49,24 @@ final class AnalogValueSchema extends DisplaySchema
 	 */
 	public function getEntityClass(): string
 	{
-		return Entities\Widgets\Display\AnalogValue::class;
+		return Entities\Widgets\Display\Slider::class;
 	}
 
 	/**
-	 * @param Entities\Widgets\Display\IAnalogValue $display
+	 * @param Entities\Widgets\Display\ISlider $display
 	 * @param JsonApi\Contracts\Schema\ContextInterface $context
 	 *
-	 * @return iterable<string, string|int|null>
+	 * @return iterable<string, string|int|float|null>
 	 *
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
 	 */
 	public function getAttributes($display, JsonApi\Contracts\Schema\ContextInterface $context): iterable
 	{
 		return array_merge((array) parent::getAttributes($display, $context), [
-			'precision' => $display->getPrecision(),
+			'minimum_value' => $display->getMinimumValue(),
+			'maximum_value' => $display->getMaximumValue(),
+			'precision'     => $display->getPrecision(),
+			'step_value'    => $display->getStepValue(),
 		]);
 	}
 

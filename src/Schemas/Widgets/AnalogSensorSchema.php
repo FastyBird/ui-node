@@ -10,7 +10,7 @@
  * @subpackage     Schemas
  * @since          0.1.0
  *
- * @date           13.04.19
+ * @date           26.05.20
  */
 
 namespace FastyBird\UINode\Schemas\Widgets;
@@ -20,10 +20,10 @@ use FastyBird\UINode\Entities;
 /**
  * Analog sensor widget entity schema
  *
- * @package        FastyBird:IOTApiModule!
- * @subpackage     Schemas
+ * @package         FastyBird:UINode!
+ * @subpackage      Schemas
  *
- * @author         Adam Kadlec <adam.kadlec@fastybird.com>
+ * @author          Adam Kadlec <adam.kadlec@fastybird.com>
  *
  * @phpstan-extends WidgetSchema<Entities\Widgets\IAnalogSensor>
  */

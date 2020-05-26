@@ -10,7 +10,7 @@
  * @subpackage     Schemas
  * @since          0.1.0
  *
- * @date           13.04.19
+ * @date           26.05.20
  */
 
 namespace FastyBird\UINode\Schemas\Widgets\Display;
@@ -56,35 +56,13 @@ abstract class DisplaySchema extends Schemas\JsonApiSchema
 	 * @param Entities\Widgets\Display\IDisplay $display
 	 * @param JsonApi\Contracts\Schema\ContextInterface $context
 	 *
-	 * @return iterable<string, string|string[]|null>
+	 * @return iterable<string, string|null>
 	 *
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
 	 */
 	public function getAttributes($display, JsonApi\Contracts\Schema\ContextInterface $context): iterable
 	{
-		$attributes = [];
-
-		if ($display instanceof Entities\Widgets\Display\Parameters\IIcon) {
-			$attributes['icon'] = $display->getIcon() !== null ? $display->getIcon()->getValue() : null;
-		}
-
-		if ($display instanceof Entities\Widgets\Display\Parameters\IMaximumValue) {
-			$attributes['maximum_value'] = $display->getMaximumValue();
-		}
-
-		if ($display instanceof Entities\Widgets\Display\Parameters\IMinimumValue) {
-			$attributes['minimum_value'] = $display->getMinimumValue();
-		}
-
-		if ($display instanceof Entities\Widgets\Display\Parameters\IPrecision) {
-			$attributes['precision'] = $display->getPrecision();
-		}
-
-		if ($display instanceof Entities\Widgets\Display\Parameters\IStepValue) {
-			$attributes['step_value'] = $display->getStepValue();
-		}
-
-		return $attributes;
+		return [];
 	}
 
 	/**

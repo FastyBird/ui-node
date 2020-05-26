@@ -10,20 +10,21 @@
  * @subpackage     Schemas
  * @since          0.1.0
  *
- * @date           13.04.19
+ * @date           26.05.20
  */
 
 namespace FastyBird\UINode\Schemas\Widgets\Display;
 
 use FastyBird\UINode\Entities;
+use Neomerx\JsonApi;
 
 /**
  * Grouped button widget display entity schema
  *
- * @package        FastyBird:IOTApiModule!
- * @subpackage     Schemas
+ * @package         FastyBird:UINode!
+ * @subpackage      Schemas
  *
- * @author         Adam Kadlec <adam.kadlec@fastybird.com>
+ * @author          Adam Kadlec <adam.kadlec@fastybird.com>
  *
  * @phpstan-extends DisplaySchema<Entities\Widgets\Display\IGroupedButton>
  */
@@ -49,6 +50,21 @@ final class GroupedButtonSchema extends DisplaySchema
 	public function getEntityClass(): string
 	{
 		return Entities\Widgets\Display\GroupedButton::class;
+	}
+
+	/**
+	 * @param Entities\Widgets\Display\IGroupedButton $display
+	 * @param JsonApi\Contracts\Schema\ContextInterface $context
+	 *
+	 * @return iterable<string, string|null>
+	 *
+	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
+	 */
+	public function getAttributes($display, JsonApi\Contracts\Schema\ContextInterface $context): iterable
+	{
+		return array_merge((array) parent::getAttributes($display, $context), [
+			'icon' => $display->getIcon() !== null ? $display->getIcon()->getValue() : null,
+		]);
 	}
 
 }

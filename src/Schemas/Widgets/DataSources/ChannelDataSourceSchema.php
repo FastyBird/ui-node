@@ -10,7 +10,7 @@
  * @subpackage     Schemas
  * @since          0.1.0
  *
- * @date           13.04.19
+ * @date           26.05.20
  */
 
 namespace FastyBird\UINode\Schemas\Widgets\DataSources;

@@ -1,7 +1,7 @@
 <?php declare(strict_types = 1);
 
 /**
- * AnalogValueSchema.php
+ * GaugeSchema.php
  *
  * @license        More in license.md
  * @copyright      https://www.fastybird.com
@@ -19,22 +19,22 @@ use FastyBird\UINode\Entities;
 use Neomerx\JsonApi;
 
 /**
- * Analog value widget display entity schema
+ * Gauge widget display entity schema
  *
  * @package         FastyBird:UINode!
  * @subpackage      Schemas
  *
  * @author          Adam Kadlec <adam.kadlec@fastybird.com>
  *
- * @phpstan-extends DisplaySchema<Entities\Widgets\Display\IAnalogValue>
+ * @phpstan-extends DisplaySchema<Entities\Widgets\Display\IGauge>
  */
-final class AnalogValueSchema extends DisplaySchema
+final class GaugeSchema extends DisplaySchema
 {
 
 	/**
 	 * Define entity schema type string
 	 */
-	public const SCHEMA_TYPE = 'ui-node/widget-display-analog-value';
+	public const SCHEMA_TYPE = 'ui-node/widget-display-gauge';
 
 	/**
 	 * @return string
@@ -49,11 +49,11 @@ final class AnalogValueSchema extends DisplaySchema
 	 */
 	public function getEntityClass(): string
 	{
-		return Entities\Widgets\Display\AnalogValue::class;
+		return Entities\Widgets\Display\Gauge::class;
 	}
 
 	/**
-	 * @param Entities\Widgets\Display\IAnalogValue $display
+	 * @param Entities\Widgets\Display\IGauge $display
 	 * @param JsonApi\Contracts\Schema\ContextInterface $context
 	 *
 	 * @return iterable<string, string|int|null>

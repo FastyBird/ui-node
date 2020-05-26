@@ -18,7 +18,7 @@ namespace FastyBird\UINode\Controllers;
 use Doctrine;
 use FastyBird\NodeWebServer\Exceptions as NodeWebServerExceptions;
 use FastyBird\NodeWebServer\Http as NodeWebServerHttp;
-use FastyBird\UINode\Entities;
+use FastyBird\UINode\Controllers;
 use FastyBird\UINode\Hydrators;
 use FastyBird\UINode\Models;
 use FastyBird\UINode\Queries;
@@ -26,9 +26,7 @@ use FastyBird\UINode\Router;
 use FastyBird\UINode\Schemas;
 use Fig\Http\Message\StatusCodeInterface;
 use IPub\DoctrineCrud\Exceptions as DoctrineCrudExceptions;
-use Nette\Utils;
 use Psr\Http\Message;
-use Ramsey\Uuid;
 use Throwable;
 
 /**
@@ -41,6 +39,8 @@ use Throwable;
  */
 final class WidgetsV1Controller extends BaseV1Controller
 {
+
+	use Controllers\Finders\TWidgetFinder;
 
 	/** @var Hydrators\Widgets\AnalogActuatorWidgetHydrator */
 	private $analogActuatorHydrator;
@@ -208,29 +208,6 @@ final class WidgetsV1Controller extends BaseV1Controller
 				]
 			);
 
-		} catch (Doctrine\DBAL\Exception\UniqueConstraintViolationException $ex) {
-			// Revert all changes when error occur
-			$this->getOrmConnection()->rollback();
-
-			if (preg_match("%key '(?P<key>.+)_unique'%", $ex->getMessage(), $match)) {
-				if (Utils\Strings::startsWith($match['key'], 'device_')) {
-					throw new NodeWebServerExceptions\JsonApiErrorException(
-						StatusCodeInterface::STATUS_UNPROCESSABLE_ENTITY,
-						$this->translator->translate('//node.base.messages.uniqueConstraint.heading'),
-						$this->translator->translate('//node.base.messages.uniqueConstraint.message'),
-						[
-							'pointer' => '/data/attributes/' . Utils\Strings::substring($match['key'], 7),
-						]
-					);
-				}
-			}
-
-			throw new NodeWebServerExceptions\JsonApiErrorException(
-				StatusCodeInterface::STATUS_UNPROCESSABLE_ENTITY,
-				$this->translator->translate('//node.base.messages.uniqueConstraint.heading'),
-				$this->translator->translate('//node.base.messages.uniqueConstraint.message')
-			);
-
 		} catch (Throwable $ex) {
 			// Revert all changes when error occur
 			$this->getOrmConnection()->rollback();
@@ -325,29 +302,6 @@ final class WidgetsV1Controller extends BaseV1Controller
 			$this->getOrmConnection()->rollback();
 
 			throw $ex;
-
-		} catch (Doctrine\DBAL\Exception\UniqueConstraintViolationException $ex) {
-			// Revert all changes when error occur
-			$this->getOrmConnection()->rollback();
-
-			if (preg_match("%key '(?P<key>.+)_unique'%", $ex->getMessage(), $match)) {
-				if (Utils\Strings::startsWith($match['key'], 'device_')) {
-					throw new NodeWebServerExceptions\JsonApiErrorException(
-						StatusCodeInterface::STATUS_UNPROCESSABLE_ENTITY,
-						$this->translator->translate('//node.base.messages.uniqueConstraint.heading'),
-						$this->translator->translate('//node.base.messages.uniqueConstraint.message'),
-						[
-							'pointer' => '/data/attributes/' . Utils\Strings::substring($match['key'], 7),
-						]
-					);
-				}
-			}
-
-			throw new NodeWebServerExceptions\JsonApiErrorException(
-				StatusCodeInterface::STATUS_UNPROCESSABLE_ENTITY,
-				$this->translator->translate('//node.base.messages.uniqueConstraint.heading'),
-				$this->translator->translate('//node.base.messages.uniqueConstraint.message')
-			);
 
 		} catch (Throwable $ex) {
 			// Revert all changes when error occur
@@ -446,40 +400,6 @@ final class WidgetsV1Controller extends BaseV1Controller
 		$this->throwUnknownRelation($relationEntity);
 
 		return $response;
-	}
-
-	/**
-	 * @param string $id
-	 *
-	 * @return Entities\Widgets\IWidget
-	 *
-	 * @throws NodeWebServerExceptions\IJsonApiException
-	 */
-	private function findWidget(string $id): Entities\Widgets\IWidget
-	{
-		try {
-			$findQuery = new Queries\FindWidgetsQuery();
-			$findQuery->byId(Uuid\Uuid::fromString($id));
-
-			$widget = $this->widgetRepository->findOneBy($findQuery);
-
-			if ($widget === null) {
-				throw new NodeWebServerExceptions\JsonApiErrorException(
-					StatusCodeInterface::STATUS_NOT_FOUND,
-					$this->translator->translate('//node.base.messages.dashboardNotFound.heading'),
-					$this->translator->translate('//node.base.messages.dashboardNotFound.message')
-				);
-			}
-
-		} catch (Uuid\Exception\InvalidUuidStringException $ex) {
-			throw new NodeWebServerExceptions\JsonApiErrorException(
-				StatusCodeInterface::STATUS_NOT_FOUND,
-				$this->translator->translate('//node.base.messages.dashboardNotFound.heading'),
-				$this->translator->translate('//node.base.messages.dashboardNotFound.message')
-			);
-		}
-
-		return $widget;
 	}
 
 }

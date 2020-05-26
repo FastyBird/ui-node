@@ -163,6 +163,8 @@ services:
 
 	- {factory: FastyBird\UINode\Models\Widgets\WidgetsManager(@ipubDoctrineCrud.crud::create(FastyBird\UINode\Entities\Widgets\Widget))}
 
+	- {factory: FastyBird\UINode\Models\Widgets\Displays\DisplaysManager(@ipubDoctrineCrud.crud::create(FastyBird\UINode\Entities\Widgets\Display\Display))}
+
 	- {factory: FastyBird\UINode\Models\Widgets\DataSources\DataSourcesManager(@ipubDoctrineCrud.crud::create(FastyBird\UINode\Entities\Widgets\DataSources\DataSource))}
 
 	# API controllers
@@ -173,6 +175,8 @@ services:
 	- {factory: FastyBird\UINode\Controllers\GroupsV1Controller, tags: [nette.inject]}
 
 	- {factory: FastyBird\UINode\Controllers\WidgetsV1Controller, tags: [nette.inject]}
+
+	- {factory: FastyBird\UINode\Controllers\DisplayV1Controller, tags: [nette.inject]}
 
 	# API schemas
 	#############
@@ -195,9 +199,15 @@ services:
 
 	- {factory: FastyBird\UINode\Schemas\Widgets\Display\ButtonSchema}
 
+	- {factory: FastyBird\UINode\Schemas\Widgets\Display\ChartGraphSchema}
+
 	- {factory: FastyBird\UINode\Schemas\Widgets\Display\DigitalValueSchema}
 
+	- {factory: FastyBird\UINode\Schemas\Widgets\Display\GaugeSchema}
+
 	- {factory: FastyBird\UINode\Schemas\Widgets\Display\GroupedButtonSchema}
+
+	- {factory: FastyBird\UINode\Schemas\Widgets\Display\SliderSchema}
 
 	# API hydrators
 	###############
@@ -213,3 +223,17 @@ services:
 	- {factory: FastyBird\UINode\Hydrators\Widgets\DigitalActuatorWidgetHydrator}
 
 	- {factory: FastyBird\UINode\Hydrators\Widgets\DigitalSensorWidgetHydrator}
+
+	- {factory: FastyBird\UINode\Hydrators\Widgets\Displays\AnalogValueHydrator}
+
+	- {factory: FastyBird\UINode\Hydrators\Widgets\Displays\ButtonHydrator}
+
+	- {factory: FastyBird\UINode\Hydrators\Widgets\Displays\ChartGraphHydrator}
+
+	- {factory: FastyBird\UINode\Hydrators\Widgets\Displays\DigitalValueHydrator}
+
+	- {factory: FastyBird\UINode\Hydrators\Widgets\Displays\GaugeHydrator}
+
+	- {factory: FastyBird\UINode\Hydrators\Widgets\Displays\GroupedButtonHydrator}
+
+	- {factory: FastyBird\UINode\Hydrators\Widgets\Displays\SliderHydrator}

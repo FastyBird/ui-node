@@ -10,7 +10,7 @@
  * @subpackage     Schemas
  * @since          0.1.0
  *
- * @date           13.04.19
+ * @date           26.05.20
  */
 
 namespace FastyBird\UINode\Schemas\Widgets\Display;
@@ -20,12 +20,12 @@ use FastyBird\UINode\Entities;
 /**
  * Digital value widget display entity schema
  *
- * @package        FastyBird:IOTApiModule!
- * @subpackage     Schemas
+ * @package            FastyBird:UINode!
+ * @subpackage         Schemas
  *
- * @author         Adam Kadlec <adam.kadlec@fastybird.com>
+ * @author             Adam Kadlec <adam.kadlec@fastybird.com>
  *
- * @phpstan-extends DisplaySchema<Entities\Widgets\Display\IDigitalValue>
+ * @phpstan-extends    DisplaySchema<Entities\Widgets\Display\IDigitalValue>
  */
 final class DigitalValueSchema extends DisplaySchema
 {

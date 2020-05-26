@@ -46,10 +46,14 @@ class Router extends Routing\Router
 	/** @var Controllers\WidgetsV1Controller */
 	private $widgetsV1Controller;
 
+	/** @var Controllers\DisplayV1Controller */
+	private $displayV1Controller;
+
 	public function __construct(
 		Controllers\DashboardsV1Controller $dashboardsV1Controller,
 		Controllers\GroupsV1Controller $groupsV1Controller,
 		Controllers\WidgetsV1Controller $widgetsV1Controller,
+		Controllers\DisplayV1Controller $displayV1Controller,
 		?ResponseFactoryInterface $responseFactory = null
 	) {
 		parent::__construct($responseFactory, null);
@@ -57,6 +61,7 @@ class Router extends Routing\Router
 		$this->dashboardsV1Controller = $dashboardsV1Controller;
 		$this->groupsV1Controller = $groupsV1Controller;
 		$this->widgetsV1Controller = $widgetsV1Controller;
+		$this->displayV1Controller = $displayV1Controller;
 	}
 
 	/**
@@ -128,16 +133,16 @@ class Router extends Routing\Router
 			});
 
 			$group->group('/widgets/{' . self::URL_WIDGET_ID . '}', function (Routing\RouteCollector $group): void {
-				$group->group('/display/{' . self::URL_ITEM_ID . '}', function (Routing\RouteCollector $group): void {
+				$group->group('/display', function (Routing\RouteCollector $group): void {
 					/**
 					 * WIDGET DISPLAY
 					 */
-					$route = $group->get('', [$this->groupsV1Controller, 'read']);
+					$route = $group->get('', [$this->displayV1Controller, 'read']);
 					$route->setName('widget.display');
 
-					$group->patch('', [$this->groupsV1Controller, 'update']);
+					$group->patch('', [$this->displayV1Controller, 'update']);
 
-					$route = $group->get('/relationships/{' . self::RELATION_ENTITY . '}', [$this->groupsV1Controller, 'readRelationship']);
+					$route = $group->get('/relationships/{' . self::RELATION_ENTITY . '}', [$this->displayV1Controller, 'readRelationship']);
 					$route->setName('widget.display.relationship');
 				});
 

@@ -30,10 +30,19 @@ class ChartGraph extends Display implements IChartGraph
 	use Entities\Widgets\Display\Parameters\TPrecision;
 
 	/**
+	 * @var bool
+	 *
+	 * @IPubDoctrine\Crud(is={"writable"})
+	 */
+	protected $enableMinMax;
+
+	/**
 	 * {@inheritDoc}
 	 */
 	public function setEnableMinMax(bool $state): void
 	{
+		$this->enableMinMax = $state;
+
 		$this->setParam('enableMinMax', $state);
 	}
 

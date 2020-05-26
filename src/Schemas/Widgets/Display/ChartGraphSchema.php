@@ -1,7 +1,7 @@
 <?php declare(strict_types = 1);
 
 /**
- * AnalogValueSchema.php
+ * ChartGraphSchema.php
  *
  * @license        More in license.md
  * @copyright      https://www.fastybird.com
@@ -19,22 +19,22 @@ use FastyBird\UINode\Entities;
 use Neomerx\JsonApi;
 
 /**
- * Analog value widget display entity schema
+ * Chart graph widget display entity schema
  *
  * @package         FastyBird:UINode!
  * @subpackage      Schemas
  *
  * @author          Adam Kadlec <adam.kadlec@fastybird.com>
  *
- * @phpstan-extends DisplaySchema<Entities\Widgets\Display\IAnalogValue>
+ * @phpstan-extends DisplaySchema<Entities\Widgets\Display\IChartGraph>
  */
-final class AnalogValueSchema extends DisplaySchema
+final class ChartGraphSchema extends DisplaySchema
 {
 
 	/**
 	 * Define entity schema type string
 	 */
-	public const SCHEMA_TYPE = 'ui-node/widget-display-analog-value';
+	public const SCHEMA_TYPE = 'ui-node/widget-display-chart-graph';
 
 	/**
 	 * @return string
@@ -49,21 +49,25 @@ final class AnalogValueSchema extends DisplaySchema
 	 */
 	public function getEntityClass(): string
 	{
-		return Entities\Widgets\Display\AnalogValue::class;
+		return Entities\Widgets\Display\ChartGraph::class;
 	}
 
 	/**
-	 * @param Entities\Widgets\Display\IAnalogValue $display
+	 * @param Entities\Widgets\Display\IChartGraph $display
 	 * @param JsonApi\Contracts\Schema\ContextInterface $context
 	 *
-	 * @return iterable<string, string|int|null>
+	 * @return iterable<string, string|int|float|bool|null>
 	 *
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
 	 */
 	public function getAttributes($display, JsonApi\Contracts\Schema\ContextInterface $context): iterable
 	{
 		return array_merge((array) parent::getAttributes($display, $context), [
-			'precision' => $display->getPrecision(),
+			'minimum_value'  => $display->getMinimumValue(),
+			'maximum_value'  => $display->getMaximumValue(),
+			'precision'      => $display->getPrecision(),
+			'step_value'     => $display->getStepValue(),
+			'enable_min_max' => $display->isEnabledMinMax(),
 		]);
 	}
 
