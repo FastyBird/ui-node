@@ -33,18 +33,18 @@ trait TIcon
 {
 
 	/**
-	 * @var Types\WidgetIcons|null
+	 * @var Types\WidgetIconType|null
 	 *
 	 * @IPubDoctrine\Crud(is={"writable"})
 	 */
 	protected $icon;
 
 	/**
-	 * @param Types\WidgetIcons|null $icon
+	 * @param Types\WidgetIconType|null $icon
 	 *
 	 * @return void
 	 */
-	public function setIcon(?Types\WidgetIcons $icon): void
+	public function setIcon(?Types\WidgetIconType $icon): void
 	{
 		$this->icon = $icon;
 
@@ -57,13 +57,13 @@ trait TIcon
 	}
 
 	/**
-	 * @return Types\WidgetIcons|null
+	 * @return Types\WidgetIconType|null
 	 */
-	public function getIcon(): ?Types\WidgetIcons
+	public function getIcon(): ?Types\WidgetIconType
 	{
 		$value = $this->getParam('icon');
 
-		return $value === null ? null : Types\WidgetIcons::get($value);
+		return $value === null ? null : Types\WidgetIconType::get($value);
 	}
 
 }

@@ -1,7 +1,7 @@
 <?php declare(strict_types = 1);
 
 /**
- * IChannelDataSource.php
+ * IChannelPropertyDataSource.php
  *
  * @license        More in license.md
  * @copyright      https://www.fastybird.com
@@ -23,10 +23,8 @@ namespace FastyBird\UINode\Entities\Widgets\DataSources;
  *
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
  */
-interface IChannelDataSource extends IDataSource
+interface IChannelPropertyDataSource extends IDataSource
 {
-
-	public const SOURCE_TYPE = 'channel';
 
 	/**
 	 * @param string $channel
@@ -39,5 +37,17 @@ interface IChannelDataSource extends IDataSource
 	 * @return string
 	 */
 	public function getChannel(): string;
+
+	/**
+	 * @param string $property
+	 *
+	 * @return void
+	 */
+	public function setProperty(string $property): void;
+
+	/**
+	 * @return string
+	 */
+	public function getProperty(): string;
 
 }

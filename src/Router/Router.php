@@ -49,11 +49,15 @@ class Router extends Routing\Router
 	/** @var Controllers\DisplayV1Controller */
 	private $displayV1Controller;
 
+	/** @var Controllers\DataSourceV1Controller */
+	private $dataSourceV1Controller;
+
 	public function __construct(
 		Controllers\DashboardsV1Controller $dashboardsV1Controller,
 		Controllers\GroupsV1Controller $groupsV1Controller,
 		Controllers\WidgetsV1Controller $widgetsV1Controller,
 		Controllers\DisplayV1Controller $displayV1Controller,
+		Controllers\DataSourceV1Controller $dataSourceV1Controller,
 		?ResponseFactoryInterface $responseFactory = null
 	) {
 		parent::__construct($responseFactory, null);
@@ -62,6 +66,7 @@ class Router extends Routing\Router
 		$this->groupsV1Controller = $groupsV1Controller;
 		$this->widgetsV1Controller = $widgetsV1Controller;
 		$this->displayV1Controller = $displayV1Controller;
+		$this->dataSourceV1Controller = $dataSourceV1Controller;
 	}
 
 	/**
@@ -150,19 +155,19 @@ class Router extends Routing\Router
 					/**
 					 * WIDGET DATA SOURCES
 					 */
-					$route = $group->get('', [$this->groupsV1Controller, 'index']);
+					$route = $group->get('', [$this->dataSourceV1Controller, 'index']);
 					$route->setName('widget.data-sources');
 
-					$route = $group->get('/{' . self::URL_ITEM_ID . '}', [$this->groupsV1Controller, 'read']);
+					$route = $group->get('/{' . self::URL_ITEM_ID . '}', [$this->dataSourceV1Controller, 'read']);
 					$route->setName('widget.data-source');
 
-					$group->post('', [$this->groupsV1Controller, 'create']);
+					$group->post('', [$this->dataSourceV1Controller, 'create']);
 
-					$group->patch('/{' . self::URL_ITEM_ID . '}', [$this->groupsV1Controller, 'update']);
+					$group->patch('/{' . self::URL_ITEM_ID . '}', [$this->dataSourceV1Controller, 'update']);
 
-					$group->delete('/{' . self::URL_ITEM_ID . '}', [$this->groupsV1Controller, 'delete']);
+					$group->delete('/{' . self::URL_ITEM_ID . '}', [$this->dataSourceV1Controller, 'delete']);
 
-					$route = $group->get('/{' . self::URL_ITEM_ID . '}/relationships/{' . self::RELATION_ENTITY . '}', [$this->groupsV1Controller, 'readRelationship']);
+					$route = $group->get('/{' . self::URL_ITEM_ID . '}/relationships/{' . self::RELATION_ENTITY . '}', [$this->dataSourceV1Controller, 'readRelationship']);
 					$route->setName('widget.data-source.relationship');
 				});
 			});

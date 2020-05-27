@@ -53,10 +53,10 @@ final class GroupRepository implements IGroupRepository
 	 */
 	public function findOneBy(Queries\FindGroupsQuery $queryObject): ?Entities\Groups\IGroup
 	{
-		/** @var Entities\Groups\IGroup|null $dashboard */
-		$dashboard = $queryObject->fetchOne($this->getRepository());
+		/** @var Entities\Groups\IGroup|null $group */
+		$group = $queryObject->fetchOne($this->getRepository());
 
-		return $dashboard;
+		return $group;
 	}
 
 	/**

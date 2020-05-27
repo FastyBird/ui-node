@@ -55,10 +55,10 @@ final class WidgetRepository implements IWidgetRepository
 		Queries\FindWidgetsQuery $queryObject,
 		string $type = Entities\Widgets\Widget::class
 	): ?Entities\Widgets\IWidget {
-		/** @var Entities\Widgets\IWidget|null $dashboard */
-		$dashboard = $queryObject->fetchOne($this->getRepository($type));
+		/** @var Entities\Widgets\IWidget|null $widget */
+		$widget = $queryObject->fetchOne($this->getRepository($type));
 
-		return $dashboard;
+		return $widget;
 	}
 
 	/**

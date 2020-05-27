@@ -29,15 +29,15 @@ interface IIcon
 {
 
 	/**
-	 * @param Types\WidgetIcons $icon
+	 * @param Types\WidgetIconType $icon
 	 *
 	 * @return void
 	 */
-	public function setIcon(Types\WidgetIcons $icon): void;
+	public function setIcon(Types\WidgetIconType $icon): void;
 
 	/**
-	 * @return Types\WidgetIcons|null
+	 * @return Types\WidgetIconType|null
 	 */
-	public function getIcon(): ?Types\WidgetIcons;
+	public function getIcon(): ?Types\WidgetIconType;
 
 }

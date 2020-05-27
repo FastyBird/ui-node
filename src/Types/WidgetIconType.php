@@ -1,7 +1,7 @@
 <?php declare(strict_types = 1);
 
 /**
- * WidgetIcons.php
+ * WidgetIconType.php
  *
  * @license        More in license.md
  * @copyright      https://www.fastybird.com
@@ -25,7 +25,7 @@ use Consistence;
  *
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
  */
-class WidgetIcons extends Consistence\Enum\Enum
+class WidgetIconType extends Consistence\Enum\Enum
 {
 
 	/**

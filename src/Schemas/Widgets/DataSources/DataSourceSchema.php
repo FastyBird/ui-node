@@ -1,7 +1,7 @@
 <?php declare(strict_types = 1);
 
 /**
- * ChannelDataSourceSchema.php
+ * DataSourceSchema.php
  *
  * @license        More in license.md
  * @copyright      https://www.fastybird.com
@@ -22,23 +22,18 @@ use IPub\SlimRouter\Routing;
 use Neomerx\JsonApi;
 
 /**
- * Channel data source entity schema
+ * Data source entity schema
  *
  * @package          FastyBird:UINode!
  * @subpackage       Schemas
  *
  * @author           Adam Kadlec <adam.kadlec@fastybird.com>
  *
- * @phpstan-template T of Entities\Widgets\DataSources\IChannelDataSource
+ * @phpstan-template T of Entities\Widgets\DataSources\IDataSource
  * @phpstan-extends  Schemas\JsonApiSchema<T>
  */
-final class ChannelDataSourceSchema extends Schemas\JsonApiSchema
+abstract class DataSourceSchema extends Schemas\JsonApiSchema
 {
-
-	/**
-	 * Define entity schema type string
-	 */
-	public const SCHEMA_TYPE = 'ui-node/widget-channel-data-source';
 
 	/**
 	 * Define relationships names
@@ -58,38 +53,20 @@ final class ChannelDataSourceSchema extends Schemas\JsonApiSchema
 	}
 
 	/**
-	 * @return string
-	 */
-	public function getType(): string
-	{
-		return self::SCHEMA_TYPE;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public function getEntityClass(): string
-	{
-		return Entities\Widgets\Display\DigitalValue::class;
-	}
-
-	/**
-	 * @param Entities\Widgets\DataSources\IChannelDataSource $dataSource
+	 * @param Entities\Widgets\DataSources\IDataSource $dataSource
 	 * @param JsonApi\Contracts\Schema\ContextInterface $context
 	 *
-	 * @return iterable<string, string|string[]|null>
+	 * @return iterable<string, string|null>
 	 *
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
 	 */
 	public function getAttributes($dataSource, JsonApi\Contracts\Schema\ContextInterface $context): iterable
 	{
-		return [
-			'channel' => $dataSource->getChannel(),
-		];
+		return [];
 	}
 
 	/**
-	 * @param Entities\Widgets\DataSources\IChannelDataSource $dataSource
+	 * @param Entities\Widgets\DataSources\IDataSource $dataSource
 	 *
 	 * @return JsonApi\Contracts\Schema\LinkInterface
 	 *
@@ -111,7 +88,7 @@ final class ChannelDataSourceSchema extends Schemas\JsonApiSchema
 	}
 
 	/**
-	 * @param Entities\Widgets\DataSources\IChannelDataSource $dataSource
+	 * @param Entities\Widgets\DataSources\IDataSource $dataSource
 	 * @param JsonApi\Contracts\Schema\ContextInterface $context
 	 *
 	 * @return iterable<string, mixed>
@@ -130,7 +107,7 @@ final class ChannelDataSourceSchema extends Schemas\JsonApiSchema
 	}
 
 	/**
-	 * @param Entities\Widgets\DataSources\IChannelDataSource $dataSource
+	 * @param Entities\Widgets\DataSources\IDataSource $dataSource
 	 * @param string $name
 	 *
 	 * @return JsonApi\Contracts\Schema\LinkInterface

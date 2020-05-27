@@ -54,14 +54,18 @@ class FindDataSourcesQuery extends DoctrineOrmQuery\QueryObject
 	}
 
 	/**
-	 * @param string $channel
+	 * @param Entities\Widgets\IWidget $widget
 	 *
 	 * @return void
 	 */
-	public function forChannel(string $channel): void
+	public function forWidget(Entities\Widgets\IWidget $widget): void
 	{
-		$this->filter[] = function (ORM\QueryBuilder $qb) use ($channel): void {
-			$qb->andWhere('d.channel = :channel')->setParameter('channel', $channel);
+		$this->select[] = function (ORM\QueryBuilder $qb): void {
+			$qb->join('d.widget', 'widget');
+		};
+
+		$this->filter[] = function (ORM\QueryBuilder $qb) use ($widget): void {
+			$qb->andWhere('widget.id = :widget')->setParameter('widget', $widget->getId(), Uuid\Doctrine\UuidBinaryType::NAME);
 		};
 	}
 

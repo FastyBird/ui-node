@@ -1,7 +1,7 @@
 <?php declare(strict_types = 1);
 
 /**
- * WidgetHydrator.php
+ * DisplayHydrator.php
  *
  * @license        More in license.md
  * @copyright      https://www.fastybird.com

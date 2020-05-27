@@ -48,11 +48,11 @@ final class GroupedButtonHydrator extends DisplayHydrator
 	/**
 	 * @param JsonAPIDocument\Objects\IStandardObject<mixed> $attributes
 	 *
-	 * @return Types\WidgetIcons
+	 * @return Types\WidgetIconType
 	 *
 	 * @throws NodeWebServerExceptions\IJsonApiException
 	 */
-	protected function hydrateIconAttribute(JsonAPIDocument\Objects\IStandardObject $attributes): Types\WidgetIcons
+	protected function hydrateIconAttribute(JsonAPIDocument\Objects\IStandardObject $attributes): Types\WidgetIconType
 	{
 		if ($attributes->get('icon') === null || (string) $attributes->get('icon') === '') {
 			throw new NodeWebServerExceptions\JsonApiErrorException(
@@ -65,7 +65,7 @@ final class GroupedButtonHydrator extends DisplayHydrator
 			);
 		}
 
-		if (!Types\WidgetIcons::isValidValue($attributes->get('icon'))) {
+		if (!Types\WidgetIconType::isValidValue($attributes->get('icon'))) {
 			throw new NodeWebServerExceptions\JsonApiErrorException(
 				StatusCodeInterface::STATUS_UNPROCESSABLE_ENTITY,
 				$this->translator->translate('messages.invalidValue.heading'),
@@ -76,7 +76,7 @@ final class GroupedButtonHydrator extends DisplayHydrator
 			);
 		}
 
-		return Types\WidgetIcons::get($attributes->get('icon'));
+		return Types\WidgetIconType::get($attributes->get('icon'));
 	}
 
 }

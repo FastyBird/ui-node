@@ -18,7 +18,9 @@ namespace FastyBird\UINode\Models\Widgets\DataSources;
 use Doctrine\Common;
 use Doctrine\ORM;
 use FastyBird\UINode\Entities;
+use FastyBird\UINode\Exceptions;
 use FastyBird\UINode\Queries;
+use IPub\DoctrineOrmQuery;
 use Nette;
 use Throwable;
 
@@ -48,6 +50,19 @@ final class DataSourceRepository implements IDataSourceRepository
 
 	/**
 	 * {@inheritDoc}
+	 */
+	public function findOneBy(
+		Queries\FindDataSourcesQuery $queryObject,
+		string $type = Entities\Widgets\DataSources\DataSource::class
+	): ?Entities\Widgets\DataSources\IDataSource {
+		/** @var Entities\Widgets\DataSources\IDataSource|null $dataSource */
+		$dataSource = $queryObject->fetchOne($this->getRepository($type));
+
+		return $dataSource;
+	}
+
+	/**
+	 * {@inheritDoc}
 	 *
 	 * @throws Throwable
 	 */
@@ -58,6 +73,24 @@ final class DataSourceRepository implements IDataSourceRepository
 		$result = $queryObject->fetch($this->getRepository($type));
 
 		return is_array($result) ? $result : $result->toArray();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @throws Throwable
+	 */
+	public function getResultSet(
+		Queries\FindDataSourcesQuery $queryObject,
+		string $type = Entities\Widgets\DataSources\DataSource::class
+	): DoctrineOrmQuery\ResultSet {
+		$result = $queryObject->fetch($this->getRepository($type));
+
+		if (!$result instanceof DoctrineOrmQuery\ResultSet) {
+			throw new Exceptions\InvalidStateException('Result set for given query could not be loaded.');
+		}
+
+		return $result;
 	}
 
 	/**

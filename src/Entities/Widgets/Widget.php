@@ -189,7 +189,7 @@ abstract class Widget extends Entities\Entity implements IWidget
 	{
 		$found = $this->dataSources
 			->filter(function (Entities\Widgets\DataSources\IDataSource $row) use ($id) {
-				if ($row instanceof Entities\Widgets\DataSources\IChannelDataSource) {
+				if ($row instanceof Entities\Widgets\DataSources\IChannelPropertyDataSource) {
 					return $id === $row->getChannel();
 				}
 

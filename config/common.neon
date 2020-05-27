@@ -178,6 +178,8 @@ services:
 
 	- {factory: FastyBird\UINode\Controllers\DisplayV1Controller, tags: [nette.inject]}
 
+	- {factory: FastyBird\UINode\Controllers\DataSourceV1Controller, tags: [nette.inject]}
+
 	# API schemas
 	#############
 
@@ -223,6 +225,8 @@ services:
 	- {factory: FastyBird\UINode\Hydrators\Widgets\DigitalActuatorWidgetHydrator}
 
 	- {factory: FastyBird\UINode\Hydrators\Widgets\DigitalSensorWidgetHydrator}
+
+	- {factory: FastyBird\UINode\Hydrators\Widgets\DataSources\ChannelDataSourceHydrator}
 
 	- {factory: FastyBird\UINode\Hydrators\Widgets\Displays\AnalogValueHydrator}
 

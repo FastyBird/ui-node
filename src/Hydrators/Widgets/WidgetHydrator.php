@@ -143,14 +143,14 @@ abstract class WidgetHydrator extends Hydrators\Hydrator
 		foreach ($relationship as $dataSourcesRelation) {
 			/** @var JsonAPIDocument\Objects\IResourceObject<mixed> $dataSourceRelation */
 			foreach ($dataSourcesRelation as $dataSourceRelation) {
-				if ($dataSourceRelation->getType() === Schemas\Widgets\DataSources\ChannelDataSourceSchema::SCHEMA_TYPE) {
+				if ($dataSourceRelation->getType() === Schemas\Widgets\DataSources\ChannelPropertyDataSourceSchema::SCHEMA_TYPE) {
 					foreach ($included->getAll() as $item) {
 						if (
 							$dataSourceRelation->getIdentifier() !== null
 							&& $item->getIdentifier()->getId() === $dataSourceRelation->getIdentifier()->getId()
 						) {
 							$dataSources[] = [
-								'entity'  => Entities\Widgets\DataSources\ChannelDataSource::class,
+								'entity'  => Entities\Widgets\DataSources\ChannelPropertyDataSource::class,
 								'channel' => $item->get('channel'),
 							];
 						}
