@@ -73,7 +73,7 @@ class Dashboard extends Entities\Entity implements IDashboard
 	 * @var int
 	 *
 	 * @IPubDoctrine\Crud(is="writable")
-	 * @ORM\Column(type="integer", name="priority", length=15, nullable=false, options={"default" = 0})
+	 * @ORM\Column(type="integer", name="dashboard_priority", length=15, nullable=false, options={"default" = 0})
 	 */
 	private $priority = 0;
 

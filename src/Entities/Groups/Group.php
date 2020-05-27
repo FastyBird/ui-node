@@ -70,7 +70,7 @@ class Group extends Entities\Entity implements IGroup
 	 * @var int
 	 *
 	 * @IPubDoctrine\Crud(is="writable")
-	 * @ORM\Column(type="integer", name="priority", length=15, nullable=false, options={"default" = 0})
+	 * @ORM\Column(type="integer", name="group_priority", length=15, nullable=false, options={"default" = 0})
 	 */
 	private $priority = 0;
 
@@ -79,7 +79,7 @@ class Group extends Entities\Entity implements IGroup
 	 *
 	 * @IPubDoctrine\Crud(is={"writable"})
 	 * @ORM\ManyToMany(targetEntity="FastyBird\UINode\Entities\Widgets\Widget", inversedBy="groups")
-	 * @ORM\JoinTable(name="fb_iot_widgets_groups",
+	 * @ORM\JoinTable(name="fb_widgets_groups",
 	 *    joinColumns={
 	 *       @ORM\JoinColumn(name="group_id", referencedColumnName="group_id", onDelete="CASCADE")
 	 *    },

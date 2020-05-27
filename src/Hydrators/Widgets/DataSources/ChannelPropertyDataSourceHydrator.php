@@ -25,7 +25,7 @@ use FastyBird\UINode\Entities;
  *
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
  */
-abstract class ChannelPropertyDataSourceHydrator extends DataSourceHydrator
+final class ChannelPropertyDataSourceHydrator extends DataSourceHydrator
 {
 
 	/** @var string[] */

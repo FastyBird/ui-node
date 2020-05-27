@@ -195,7 +195,7 @@ services:
 
 	- {factory: FastyBird\UINode\Schemas\Widgets\DigitalSensorSchema}
 
-	- {factory: FastyBird\UINode\Schemas\Widgets\DataSources\ChannelDataSourceSchema}
+	- {factory: FastyBird\UINode\Schemas\Widgets\DataSources\ChannelPropertyDataSourceSchema}
 
 	- {factory: FastyBird\UINode\Schemas\Widgets\Display\AnalogValueSchema}
 
@@ -226,7 +226,7 @@ services:
 
 	- {factory: FastyBird\UINode\Hydrators\Widgets\DigitalSensorWidgetHydrator}
 
-	- {factory: FastyBird\UINode\Hydrators\Widgets\DataSources\ChannelDataSourceHydrator}
+	- {factory: FastyBird\UINode\Hydrators\Widgets\DataSources\ChannelPropertyDataSourceHydrator}
 
 	- {factory: FastyBird\UINode\Hydrators\Widgets\Displays\AnalogValueHydrator}
 
