@@ -36,7 +36,7 @@ use Throwable;
  *     }
  * )
  * @ORM\InheritanceType("JOINED")
- * @ORM\DiscriminatorColumn(name="data_source_type", type="string", length=10)
+ * @ORM\DiscriminatorColumn(name="data_source_type", type="string", length=25)
  * @ORM\DiscriminatorMap({
  *    "channel_property" = "FastyBird\UINode\Entities\Widgets\DataSources\ChannelPropertyDataSource"
  * })

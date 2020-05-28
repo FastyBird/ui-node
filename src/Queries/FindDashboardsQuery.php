@@ -56,18 +56,6 @@ class FindDashboardsQuery extends DoctrineOrmQuery\QueryObject
 	}
 
 	/**
-	 * @param string $slug
-	 *
-	 * @return void
-	 */
-	public function bySlug(string $slug): void
-	{
-		$this->filter[] = function (ORM\QueryBuilder $qb) use ($slug): void {
-			$qb->andWhere('d.slug :slug')->setParameter('slug', $slug);
-		};
-	}
-
-	/**
 	 * @param string $sortBy
 	 * @param string $sortDir
 	 *

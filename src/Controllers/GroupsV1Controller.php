@@ -53,21 +53,27 @@ final class GroupsV1Controller extends BaseV1Controller
 	/** @var Models\Groups\IGroupsManager */
 	private $groupsManager;
 
+	/** @var Models\Dashboards\IDashboardRepository */
+	protected $dashboardRepository;
+
 	/** @var string */
 	protected $translationDomain = 'node.groups';
 
 	/**
 	 * @param Models\Groups\IGroupRepository $groupRepository
 	 * @param Models\Groups\IGroupsManager $groupsManager
+	 * @param Models\Dashboards\IDashboardRepository $dashboardRepository
 	 * @param Hydrators\Groups\GroupHydrator $groupsHydrator
 	 */
 	public function __construct(
 		Models\Groups\IGroupRepository $groupRepository,
 		Models\Groups\IGroupsManager $groupsManager,
+		Models\Dashboards\IDashboardRepository $dashboardRepository,
 		Hydrators\Groups\GroupHydrator $groupsHydrator
 	) {
 		$this->groupRepository = $groupRepository;
 		$this->groupsManager = $groupsManager;
+		$this->dashboardRepository = $dashboardRepository;
 		$this->groupsHydrator = $groupsHydrator;
 	}
 

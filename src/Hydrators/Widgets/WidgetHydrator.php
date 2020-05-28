@@ -26,6 +26,7 @@ use FastyBird\UINode\Schemas;
 use Fig\Http\Message\StatusCodeInterface;
 use IPub\JsonAPIDocument;
 use Ramsey\Uuid;
+use stdClass;
 
 /**
  * Widget entity hydrator
@@ -43,13 +44,19 @@ abstract class WidgetHydrator extends NodeDatabaseHydrators\Hydrator
 
 	/** @var string[] */
 	protected $attributes = [
-		'name',
+		0 => 'name',
+
+		'minimum_value'  => 'minimumValue',
+		'maximum_value'  => 'maximumValue',
+		'step_value'     => 'stepValue',
+		'precision'      => 'precision',
+		'enable_min_max' => 'enableMinMax',
 	];
 
 	/** @var string[] */
 	protected $relationships = [
-		0 => Schemas\Widgets\WidgetSchema::RELATIONSHIPS_DISPLAY,
-		1 => Schemas\Widgets\WidgetSchema::RELATIONSHIPS_GROUPS,
+		0                                                        => Schemas\Widgets\WidgetSchema::RELATIONSHIPS_DISPLAY,
+		1                                                        => Schemas\Widgets\WidgetSchema::RELATIONSHIPS_GROUPS,
 		Schemas\Widgets\WidgetSchema::RELATIONSHIPS_DATA_SOURCES => 'dataSources',
 	];
 
@@ -141,14 +148,15 @@ abstract class WidgetHydrator extends NodeDatabaseHydrators\Hydrator
 		$dataSources = [];
 
 		foreach ($relationship as $dataSourcesRelation) {
-			/** @var JsonAPIDocument\Objects\IResourceObject<mixed> $dataSourceRelation */
+			/** @var stdClass $dataSourceRelation */
 			foreach ($dataSourcesRelation as $dataSourceRelation) {
-				if ($dataSourceRelation->getType() === Schemas\Widgets\DataSources\ChannelPropertyDataSourceSchema::SCHEMA_TYPE) {
+				if ($dataSourceRelation->type === Schemas\Widgets\DataSources\ChannelPropertyDataSourceSchema::SCHEMA_TYPE) {
 					foreach ($included->getAll() as $item) {
-						if ($item->getIdentifier()->getId() === $dataSourceRelation->getIdentifier()->getId()) {
+						if ($item->getIdentifier()->getId() === $dataSourceRelation->id) {
 							$dataSources[] = [
-								'entity'  => Entities\Widgets\DataSources\ChannelPropertyDataSource::class,
-								'channel' => $item->get('channel'),
+								'entity'   => Entities\Widgets\DataSources\ChannelPropertyDataSource::class,
+								'channel'  => $item->getAttributes()->get('channel'),
+								'property' => $item->getAttributes()->get('property'),
 							];
 						}
 					}
@@ -189,11 +197,11 @@ abstract class WidgetHydrator extends NodeDatabaseHydrators\Hydrator
 		$groups = [];
 
 		foreach ($relationship as $groupsRelation) {
-			/** @var JsonAPIDocument\Objects\IResourceObject<JsonAPIDocument\Objects\IStandardObject> $groupRelation */
+			/** @var stdClass $groupRelation */
 			foreach ($groupsRelation as $groupRelation) {
 				try {
 					$findQuery = new Queries\FindGroupsQuery();
-					$findQuery->byId(Uuid\Uuid::fromString($groupRelation->getIdentifier()->getId()));
+					$findQuery->byId(Uuid\Uuid::fromString($groupRelation->id));
 
 					$group = $this->groupRepository->findOneBy($findQuery);
 
@@ -241,21 +249,6 @@ abstract class WidgetHydrator extends NodeDatabaseHydrators\Hydrator
 		JsonAPIDocument\Objects\IStandardObject $attributes
 	): ?array {
 		switch ($type) {
-			case Schemas\Widgets\Display\DigitalValueSchema::SCHEMA_TYPE:
-				$entityMapping = $this->mapEntity(Entities\Widgets\Display\DigitalValue::class);
-
-				$display = $this->hydrateAttributes(
-					Entities\Widgets\Display\DigitalValue::class,
-					$attributes,
-					$entityMapping,
-					null,
-					null
-				);
-
-				$display['entity'] = Entities\Widgets\Display\DigitalValue::class;
-
-				return $display;
-
 			case Schemas\Widgets\Display\AnalogValueSchema::SCHEMA_TYPE:
 				$entityMapping = $this->mapEntity(Entities\Widgets\Display\AnalogValue::class);
 
@@ -286,6 +279,51 @@ abstract class WidgetHydrator extends NodeDatabaseHydrators\Hydrator
 
 				return $display;
 
+			case Schemas\Widgets\Display\ChartGraphSchema::SCHEMA_TYPE:
+				$entityMapping = $this->mapEntity(Entities\Widgets\Display\ChartGraph::class);
+
+				$display = $this->hydrateAttributes(
+					Entities\Widgets\Display\ChartGraph::class,
+					$attributes,
+					$entityMapping,
+					null,
+					null
+				);
+
+				$display['entity'] = Entities\Widgets\Display\ChartGraph::class;
+
+				return $display;
+
+			case Schemas\Widgets\Display\DigitalValueSchema::SCHEMA_TYPE:
+				$entityMapping = $this->mapEntity(Entities\Widgets\Display\DigitalValue::class);
+
+				$display = $this->hydrateAttributes(
+					Entities\Widgets\Display\DigitalValue::class,
+					$attributes,
+					$entityMapping,
+					null,
+					null
+				);
+
+				$display['entity'] = Entities\Widgets\Display\DigitalValue::class;
+
+				return $display;
+
+			case Schemas\Widgets\Display\GaugeSchema::SCHEMA_TYPE:
+				$entityMapping = $this->mapEntity(Entities\Widgets\Display\Gauge::class);
+
+				$display = $this->hydrateAttributes(
+					Entities\Widgets\Display\Gauge::class,
+					$attributes,
+					$entityMapping,
+					null,
+					null
+				);
+
+				$display['entity'] = Entities\Widgets\Display\Gauge::class;
+
+				return $display;
+
 			case Schemas\Widgets\Display\GroupedButtonSchema::SCHEMA_TYPE:
 				$entityMapping = $this->mapEntity(Entities\Widgets\Display\GroupedButton::class);
 
@@ -298,6 +336,21 @@ abstract class WidgetHydrator extends NodeDatabaseHydrators\Hydrator
 				);
 
 				$display['entity'] = Entities\Widgets\Display\GroupedButton::class;
+
+				return $display;
+
+			case Schemas\Widgets\Display\SliderSchema::SCHEMA_TYPE:
+				$entityMapping = $this->mapEntity(Entities\Widgets\Display\Slider::class);
+
+				$display = $this->hydrateAttributes(
+					Entities\Widgets\Display\Slider::class,
+					$attributes,
+					$entityMapping,
+					null,
+					null
+				);
+
+				$display['entity'] = Entities\Widgets\Display\Slider::class;
 
 				return $display;
 		}

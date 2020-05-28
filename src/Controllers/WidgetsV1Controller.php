@@ -28,6 +28,7 @@ use Fig\Http\Message\StatusCodeInterface;
 use IPub\DoctrineCrud\Exceptions as DoctrineCrudExceptions;
 use Psr\Http\Message;
 use Throwable;
+use Tracy\Debugger;
 
 /**
  * API widgets controller
@@ -209,6 +210,7 @@ final class WidgetsV1Controller extends BaseV1Controller
 			);
 
 		} catch (Throwable $ex) {
+			Debugger::log($ex);
 			// Revert all changes when error occur
 			$this->getOrmConnection()->rollBack();
 

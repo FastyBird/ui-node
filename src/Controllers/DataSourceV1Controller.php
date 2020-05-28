@@ -53,21 +53,27 @@ final class DataSourceV1Controller extends BaseV1Controller
 	/** @var Hydrators\Widgets\DataSources\ChannelPropertyDataSourceHydrator */
 	private $channelDataSourceHydrator;
 
+	/** @var Models\Widgets\IWidgetRepository */
+	protected $widgetRepository;
+
 	/** @var string */
 	protected $translationDomain = 'node.dataSources';
 
 	/**
 	 * @param Models\Widgets\DataSources\IDataSourceRepository $dataSourceRepository
 	 * @param Models\Widgets\DataSources\IDataSourcesManager $dataSourcesManager
+	 * @param Models\Widgets\IWidgetRepository $widgetRepository
 	 * @param Hydrators\Widgets\DataSources\ChannelPropertyDataSourceHydrator $channelDataSourceHydrator
 	 */
 	public function __construct(
 		Models\Widgets\DataSources\IDataSourceRepository $dataSourceRepository,
 		Models\Widgets\DataSources\IDataSourcesManager $dataSourcesManager,
+		Models\Widgets\IWidgetRepository $widgetRepository,
 		Hydrators\Widgets\DataSources\ChannelPropertyDataSourceHydrator $channelDataSourceHydrator
 	) {
 		$this->dataSourceRepository = $dataSourceRepository;
 		$this->dataSourcesManager = $dataSourcesManager;
+		$this->widgetRepository = $widgetRepository;
 		$this->channelDataSourceHydrator = $channelDataSourceHydrator;
 	}
 

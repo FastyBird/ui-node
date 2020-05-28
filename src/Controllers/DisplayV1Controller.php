@@ -65,8 +65,15 @@ final class DisplayV1Controller extends BaseV1Controller
 	/** @var Hydrators\Widgets\Displays\SliderHydrator */
 	private $sliderHydrator;
 
+	/** @var Models\Widgets\IWidgetRepository */
+	protected $widgetRepository;
+
+	/** @var string */
+	protected $translationDomain = 'node.display';
+
 	/**
 	 * @param Models\Widgets\Displays\IDisplaysManager $displaysManager
+	 * @param Models\Widgets\IWidgetRepository $widgetRepository
 	 * @param Hydrators\Widgets\Displays\AnalogValueHydrator $analogValueHydrator
 	 * @param Hydrators\Widgets\Displays\ButtonHydrator $buttonHydrator
 	 * @param Hydrators\Widgets\Displays\ChartGraphHydrator $chartGraphHydrator
@@ -77,6 +84,7 @@ final class DisplayV1Controller extends BaseV1Controller
 	 */
 	public function __construct(
 		Models\Widgets\Displays\IDisplaysManager $displaysManager,
+		Models\Widgets\IWidgetRepository $widgetRepository,
 		Hydrators\Widgets\Displays\AnalogValueHydrator $analogValueHydrator,
 		Hydrators\Widgets\Displays\ButtonHydrator $buttonHydrator,
 		Hydrators\Widgets\Displays\ChartGraphHydrator $chartGraphHydrator,
@@ -86,6 +94,7 @@ final class DisplayV1Controller extends BaseV1Controller
 		Hydrators\Widgets\Displays\SliderHydrator $sliderHydrator
 	) {
 		$this->displaysManager = $displaysManager;
+		$this->widgetRepository = $widgetRepository;
 		$this->analogValueHydrator = $analogValueHydrator;
 		$this->buttonHydrator = $buttonHydrator;
 		$this->chartGraphHydrator = $chartGraphHydrator;

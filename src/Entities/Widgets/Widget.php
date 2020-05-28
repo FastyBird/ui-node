@@ -19,6 +19,7 @@ use Doctrine\Common;
 use Doctrine\ORM\Mapping as ORM;
 use FastyBird\NodeDatabase\Entities as NodeDatabaseEntities;
 use FastyBird\UINode\Entities;
+use FastyBird\UINode\Exceptions;
 use IPub\DoctrineCrud\Mapping\Annotation as IPubDoctrine;
 use IPub\DoctrineTimestampable;
 use Ramsey\Uuid;
@@ -92,10 +93,12 @@ abstract class Widget extends NodeDatabaseEntities\Entity implements IWidget
 	 * @var Common\Collections\Collection<int, Entities\Widgets\DataSources\IDataSource>
 	 *
 	 * @IPubDoctrine\Crud(is={"writable"})
-	 * @ORM\OneToMany(targetEntity="FastyBird\UINode\Entities\Widgets\DataSources\DataSource", mappedBy="widget", cascade={"persist", "remove"},
-	 *                                                                                         orphanRemoval=true)
+	 * @ORM\OneToMany(targetEntity="FastyBird\UINode\Entities\Widgets\DataSources\DataSource", mappedBy="widget", cascade={"persist", "remove"}, orphanRemoval=true)
 	 */
 	protected $dataSources;
+
+	/** @var string[] */
+	public static $allowedDisplay = [];
 
 	/**
 	 * @param string $name
@@ -136,6 +139,10 @@ abstract class Widget extends NodeDatabaseEntities\Entity implements IWidget
 	 */
 	public function setDisplay(Entities\Widgets\Display\IDisplay $display): void
 	{
+		if (!in_array(get_class($display), self::$allowedDisplay, true)) {
+			throw new Exceptions\InvalidArgumentException('Provided display entity is not valid for this widget type');
+		}
+
 		$this->display = $display;
 	}
 

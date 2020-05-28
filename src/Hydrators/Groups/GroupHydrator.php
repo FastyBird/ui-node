@@ -17,6 +17,7 @@ namespace FastyBird\UINode\Hydrators\Groups;
 
 use FastyBird\NodeDatabase\Hydrators as NodeDatabaseHydrators;
 use FastyBird\UINode\Entities;
+use FastyBird\UINode\Schemas;
 use IPub\JsonAPIDocument;
 
 /**
@@ -39,6 +40,11 @@ final class GroupHydrator extends NodeDatabaseHydrators\Hydrator
 		'comment',
 	];
 
+	/** @var string[] */
+	protected $relationships = [
+		Schemas\Groups\GroupSchema::RELATIONSHIPS_DASHBOARD,
+	];
+
 	/** @var string */
 	protected $translationDomain = 'node.groups';
 
@@ -47,7 +53,7 @@ final class GroupHydrator extends NodeDatabaseHydrators\Hydrator
 	 */
 	protected function getEntityName(): string
 	{
-		return Entities\Dashboards\Dashboard::class;
+		return Entities\Groups\Group::class;
 	}
 
 	/**
