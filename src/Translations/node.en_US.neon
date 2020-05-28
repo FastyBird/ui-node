@@ -55,3 +55,20 @@ dashboards:
 			heading	: "System error"
 			message	: "Something went wrong, dashboard could not be deleted"
 
+groups:
+	messages:
+		invalidType:
+			heading	: "Invalid type"
+			message	: "Provided group entity type is not valid"
+		notCreated:
+			heading	: "System error"
+			message	: "Something went wrong, group could not be created"
+		notUpdated:
+			heading	: "System error"
+			message	: "Something went wrong, group could not be updated"
+		notDeleted:
+			heading	: "System error"
+			message	: "Something went wrong, group could not be deleted"
+		notFound:
+			heading	: "Group not found"
+			message	: "Requested group was not found"

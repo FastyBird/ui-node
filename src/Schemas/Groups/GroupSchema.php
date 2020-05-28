@@ -133,8 +133,8 @@ final class GroupSchema extends Schemas\JsonApiSchema
 			],
 			self::RELATIONSHIPS_WIDGETS   => [
 				self::RELATIONSHIP_DATA          => $group->getWidgets(),
-				self::RELATIONSHIP_LINKS_SELF    => false,
-				self::RELATIONSHIP_LINKS_RELATED => true,
+				self::RELATIONSHIP_LINKS_SELF    => true,
+				self::RELATIONSHIP_LINKS_RELATED => false,
 			],
 		];
 	}

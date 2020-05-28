@@ -409,16 +409,16 @@ final class GroupsV1Controller extends BaseV1Controller
 			if ($group === null) {
 				throw new NodeWebServerExceptions\JsonApiErrorException(
 					StatusCodeInterface::STATUS_NOT_FOUND,
-					$this->translator->translate('//node.base.messages.groupNotFound.heading'),
-					$this->translator->translate('//node.base.messages.groupNotFound.message')
+					$this->translator->translate('messages.notFound.heading'),
+					$this->translator->translate('messages.notFound.message')
 				);
 			}
 
 		} catch (Uuid\Exception\InvalidUuidStringException $ex) {
 			throw new NodeWebServerExceptions\JsonApiErrorException(
 				StatusCodeInterface::STATUS_NOT_FOUND,
-				$this->translator->translate('//node.base.messages.groupNotFound.heading'),
-				$this->translator->translate('//node.base.messages.groupNotFound.message')
+				$this->translator->translate('messages.notFound.heading'),
+				$this->translator->translate('messages.notFound.message')
 			);
 		}
 
