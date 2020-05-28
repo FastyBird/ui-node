@@ -56,7 +56,9 @@ abstract class DataSourceSchema extends Schemas\JsonApiSchema
 	 * @param Entities\Widgets\DataSources\IDataSource $dataSource
 	 * @param JsonApi\Contracts\Schema\ContextInterface $context
 	 *
-	 * @return iterable<string, string|null>
+	 * @return iterable<string, mixed>
+	 *
+	 * @phpstan-param T $dataSource
 	 *
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
 	 */
@@ -69,6 +71,8 @@ abstract class DataSourceSchema extends Schemas\JsonApiSchema
 	 * @param Entities\Widgets\DataSources\IDataSource $dataSource
 	 *
 	 * @return JsonApi\Contracts\Schema\LinkInterface
+	 *
+	 * @phpstan-param T $dataSource
 	 *
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
 	 */
@@ -93,6 +97,8 @@ abstract class DataSourceSchema extends Schemas\JsonApiSchema
 	 *
 	 * @return iterable<string, mixed>
 	 *
+	 * @phpstan-param T $dataSource
+	 *
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
 	 */
 	public function getRelationships($dataSource, JsonApi\Contracts\Schema\ContextInterface $context): iterable
@@ -111,6 +117,8 @@ abstract class DataSourceSchema extends Schemas\JsonApiSchema
 	 * @param string $name
 	 *
 	 * @return JsonApi\Contracts\Schema\LinkInterface
+	 *
+	 * @phpstan-param T $dataSource
 	 *
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
 	 */

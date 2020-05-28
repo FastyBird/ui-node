@@ -25,7 +25,8 @@ use FastyBird\UINode\Entities;
  *
  * @author             Adam Kadlec <adam.kadlec@fastybird.com>
  *
- * @phpstan-extends    DisplaySchema<Entities\Widgets\Display\IDigitalValue>
+ * @phpstan-template T of Entities\Widgets\Display\IDigitalValue
+ * @phpstan-extends DisplaySchema<T>
  */
 final class DigitalValueSchema extends DisplaySchema
 {

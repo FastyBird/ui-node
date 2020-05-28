@@ -104,6 +104,8 @@ nettrineOrm:
 		proxyDir	: %tempDir%/cache/doctrine.proxies
 
 nettrineOrmAnnotations:
+	namespaces:
+		- FastyBird\UINode\Entities
 	paths:
 		- %appDir%/src/Entities
 
@@ -111,37 +113,14 @@ nettrineOrmAnnotations:
 # Node services definitions #
 #############################
 
-decorator:
-	FastyBird\NodeWebServer\Commands\HttpServerCommand:
-		setup:
-			- '$onServerStart[]' = @FastyBird\UINode\Events\ServerStartHandler
-			- '$onRequest[]' = @FastyBird\UINode\Events\RequestHandler
-			- '$onResponse[]' = @FastyBird\UINode\Events\ResponseHandler
-			- '$onAfterConsumeMessage[]' = @FastyBird\UINode\Events\AfterConsumeHandler
-
 services:
 	# Http router
 	#############
-
-	- {factory: FastyBird\UINode\Middleware\JsonApiMiddleware, tags: [middleware: {priority: 10}]}
-
-	- {factory: FastyBird\UINode\Middleware\DbErrorMiddleware, tags: [middleware: {priority: 50}]}
 
 	-
 		factory: FastyBird\UINode\Router\Router
 		setup:
 			- registerRoutes
-
-	# Node events
-	#############
-
-	- {factory: FastyBird\UINode\Events\ServerStartHandler}
-
-	- {factory: FastyBird\UINode\Events\RequestHandler}
-
-	- {factory: FastyBird\UINode\Events\ResponseHandler}
-
-	- {factory: FastyBird\UINode\Events\AfterConsumeHandler}
 
 	# Database repositories
 	#######################

@@ -15,6 +15,7 @@
 
 namespace FastyBird\UINode\Hydrators\Dashboards;
 
+use FastyBird\NodeDatabase\Hydrators as NodeDatabaseHydrators;
 use FastyBird\UINode\Entities;
 use FastyBird\UINode\Hydrators;
 use IPub\JsonAPIDocument;
@@ -27,7 +28,7 @@ use IPub\JsonAPIDocument;
  *
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
  */
-final class DashboardHydrator extends Hydrators\Hydrator
+final class DashboardHydrator extends NodeDatabaseHydrators\Hydrator
 {
 
 	/** @var string */

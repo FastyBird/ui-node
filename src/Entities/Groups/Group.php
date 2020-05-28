@@ -17,6 +17,7 @@ namespace FastyBird\UINode\Entities\Groups;
 
 use Doctrine\Common;
 use Doctrine\ORM\Mapping as ORM;
+use FastyBird\NodeDatabase\Entities as NodeDatabaseEntities;
 use FastyBird\UINode\Entities;
 use IPub\DoctrineCrud\Mapping\Annotation as IPubDoctrine;
 use IPub\DoctrineTimestampable;
@@ -34,10 +35,10 @@ use Throwable;
  *     }
  * )
  */
-class Group extends Entities\Entity implements IGroup
+class Group extends NodeDatabaseEntities\Entity implements IGroup
 {
 
-	use Entities\TEntityParams;
+	use NodeDatabaseEntities\TEntityParams;
 	use DoctrineTimestampable\Entities\TEntityCreated;
 	use DoctrineTimestampable\Entities\TEntityUpdated;
 
@@ -219,7 +220,7 @@ class Group extends Entities\Entity implements IGroup
 	public function getWidget(string $id): ?Entities\Widgets\IWidget
 	{
 		$found = $this->widgets
-			->filter(function (Entities\Widgets\IWidget $row) use ($id) {
+			->filter(function (Entities\Widgets\IWidget $row) use ($id): bool {
 				return $id === $row->getPlainId();
 			});
 

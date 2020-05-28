@@ -26,7 +26,8 @@ use Neomerx\JsonApi;
  *
  * @author          Adam Kadlec <adam.kadlec@fastybird.com>
  *
- * @phpstan-extends DisplaySchema<Entities\Widgets\Display\IGauge>
+ * @phpstan-template T of Entities\Widgets\Display\IGauge
+ * @phpstan-extends DisplaySchema<T>
  */
 final class GaugeSchema extends DisplaySchema
 {
@@ -56,7 +57,7 @@ final class GaugeSchema extends DisplaySchema
 	 * @param Entities\Widgets\Display\IGauge $display
 	 * @param JsonApi\Contracts\Schema\ContextInterface $context
 	 *
-	 * @return iterable<string, string|int|null>
+	 * @return iterable<string, mixed>
 	 *
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
 	 */

@@ -15,7 +15,7 @@
 
 namespace FastyBird\UINode\Hydrators\Widgets\DataSources;
 
-use FastyBird\UINode\Hydrators;
+use FastyBird\NodeDatabase\Hydrators as NodeDatabaseHydrators;
 
 /**
  * Data source entity hydrator
@@ -25,7 +25,7 @@ use FastyBird\UINode\Hydrators;
  *
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
  */
-abstract class DataSourceHydrator extends Hydrators\Hydrator
+abstract class DataSourceHydrator extends NodeDatabaseHydrators\Hydrator
 {
 
 	/** @var string */

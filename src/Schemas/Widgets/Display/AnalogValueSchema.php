@@ -26,7 +26,8 @@ use Neomerx\JsonApi;
  *
  * @author          Adam Kadlec <adam.kadlec@fastybird.com>
  *
- * @phpstan-extends DisplaySchema<Entities\Widgets\Display\IAnalogValue>
+ * @phpstan-template T of Entities\Widgets\Display\IAnalogValue
+ * @phpstan-extends DisplaySchema<T>
  */
 final class AnalogValueSchema extends DisplaySchema
 {
@@ -56,7 +57,7 @@ final class AnalogValueSchema extends DisplaySchema
 	 * @param Entities\Widgets\Display\IAnalogValue $display
 	 * @param JsonApi\Contracts\Schema\ContextInterface $context
 	 *
-	 * @return iterable<string, string|int|null>
+	 * @return iterable<string, mixed>
 	 *
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
 	 */

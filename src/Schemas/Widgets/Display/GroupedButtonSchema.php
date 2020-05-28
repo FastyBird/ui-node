@@ -26,7 +26,8 @@ use Neomerx\JsonApi;
  *
  * @author          Adam Kadlec <adam.kadlec@fastybird.com>
  *
- * @phpstan-extends DisplaySchema<Entities\Widgets\Display\IGroupedButton>
+ * @phpstan-template T of Entities\Widgets\Display\IGroupedButton
+ * @phpstan-extends DisplaySchema<T>
  */
 final class GroupedButtonSchema extends DisplaySchema
 {
@@ -56,7 +57,7 @@ final class GroupedButtonSchema extends DisplaySchema
 	 * @param Entities\Widgets\Display\IGroupedButton $display
 	 * @param JsonApi\Contracts\Schema\ContextInterface $context
 	 *
-	 * @return iterable<string, string|null>
+	 * @return iterable<string, mixed>
 	 *
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
 	 */

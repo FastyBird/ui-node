@@ -146,13 +146,13 @@ final class DataSourceV1Controller extends BaseV1Controller
 
 			} catch (NodeWebServerExceptions\IJsonApiException $ex) {
 				// Revert all changes when error occur
-				$this->getOrmConnection()->rollback();
+				$this->getOrmConnection()->rollBack();
 
 				throw $ex;
 
 			} catch (DoctrineCrudExceptions\MissingRequiredFieldException $ex) {
 				// Revert all changes when error occur
-				$this->getOrmConnection()->rollback();
+				$this->getOrmConnection()->rollBack();
 
 				$pointer = 'data/attributes/' . $ex->getField();
 
@@ -167,7 +167,7 @@ final class DataSourceV1Controller extends BaseV1Controller
 
 			} catch (DoctrineCrudExceptions\EntityCreationException $ex) {
 				// Revert all changes when error occur
-				$this->getOrmConnection()->rollback();
+				$this->getOrmConnection()->rollBack();
 
 				throw new NodeWebServerExceptions\JsonApiErrorException(
 					StatusCodeInterface::STATUS_UNPROCESSABLE_ENTITY,
@@ -180,7 +180,7 @@ final class DataSourceV1Controller extends BaseV1Controller
 
 			} catch (Throwable $ex) {
 				// Revert all changes when error occur
-				$this->getOrmConnection()->rollback();
+				$this->getOrmConnection()->rollBack();
 
 				// Log catched exception
 				$this->logger->error('[CONTROLLER] ' . $ex->getMessage(), [
@@ -271,13 +271,13 @@ final class DataSourceV1Controller extends BaseV1Controller
 
 		} catch (NodeWebServerExceptions\IJsonApiException $ex) {
 			// Revert all changes when error occur
-			$this->getOrmConnection()->rollback();
+			$this->getOrmConnection()->rollBack();
 
 			throw $ex;
 
 		} catch (Throwable $ex) {
 			// Revert all changes when error occur
-			$this->getOrmConnection()->rollback();
+			$this->getOrmConnection()->rollBack();
 
 			// Log catched exception
 			$this->logger->error('[CONTROLLER] ' . $ex->getMessage(), [
@@ -336,7 +336,7 @@ final class DataSourceV1Controller extends BaseV1Controller
 			]);
 
 			// Revert all changes when error occur
-			$this->getOrmConnection()->rollback();
+			$this->getOrmConnection()->rollBack();
 
 			throw new NodeWebServerExceptions\JsonApiErrorException(
 				StatusCodeInterface::STATUS_UNPROCESSABLE_ENTITY,

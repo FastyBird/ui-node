@@ -15,8 +15,8 @@
 
 namespace FastyBird\UINode\Hydrators\Groups;
 
+use FastyBird\NodeDatabase\Hydrators as NodeDatabaseHydrators;
 use FastyBird\UINode\Entities;
-use FastyBird\UINode\Hydrators;
 use IPub\JsonAPIDocument;
 
 /**
@@ -27,7 +27,7 @@ use IPub\JsonAPIDocument;
  *
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
  */
-final class GroupHydrator extends Hydrators\Hydrator
+final class GroupHydrator extends NodeDatabaseHydrators\Hydrator
 {
 
 	/** @var string */

@@ -25,7 +25,8 @@ use FastyBird\UINode\Entities;
  *
  * @author          Adam Kadlec <adam.kadlec@fastybird.com>
  *
- * @phpstan-extends DisplaySchema<Entities\Widgets\Display\IButton>
+ * @phpstan-template T of Entities\Widgets\Display\IButton
+ * @phpstan-extends DisplaySchema<T>
  */
 final class ButtonSchema extends DisplaySchema
 {

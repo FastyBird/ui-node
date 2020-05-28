@@ -15,8 +15,8 @@
 
 namespace FastyBird\UINode\Hydrators\Widgets\Displays;
 
+use FastyBird\NodeDatabase\Hydrators as NodeDatabaseHydrators;
 use FastyBird\NodeWebServer\Exceptions as NodeWebServerExceptions;
-use FastyBird\UINode\Hydrators;
 use Fig\Http\Message\StatusCodeInterface;
 use IPub\JsonAPIDocument;
 
@@ -28,7 +28,7 @@ use IPub\JsonAPIDocument;
  *
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
  */
-abstract class DisplayHydrator extends Hydrators\Hydrator
+abstract class DisplayHydrator extends NodeDatabaseHydrators\Hydrator
 {
 
 	/** @var string */

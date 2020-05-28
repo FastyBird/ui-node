@@ -15,6 +15,7 @@
 
 namespace FastyBird\UINode\Entities\Groups;
 
+use FastyBird\NodeDatabase\Entities as NodeDatabaseEntities;
 use FastyBird\UINode\Entities;
 use IPub\DoctrineTimestampable;
 
@@ -26,8 +27,8 @@ use IPub\DoctrineTimestampable;
  *
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
  */
-interface IGroup extends Entities\IEntity,
-	Entities\IEntityParams,
+interface IGroup extends NodeDatabaseEntities\IEntity,
+	NodeDatabaseEntities\IEntityParams,
 	DoctrineTimestampable\Entities\IEntityCreated, DoctrineTimestampable\Entities\IEntityUpdated
 {
 

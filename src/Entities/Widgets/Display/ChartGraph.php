@@ -16,8 +16,8 @@
 namespace FastyBird\UINode\Entities\Widgets\Display;
 
 use Doctrine\ORM\Mapping as ORM;
-use IPub\DoctrineCrud\Mapping\Annotation as IPubDoctrine;
 use FastyBird\UINode\Entities;
+use IPub\DoctrineCrud\Mapping\Annotation as IPubDoctrine;
 
 /**
  * @ORM\Entity

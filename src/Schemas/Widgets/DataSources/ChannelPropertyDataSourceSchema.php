@@ -27,7 +27,7 @@ use Neomerx\JsonApi;
  * @author           Adam Kadlec <adam.kadlec@fastybird.com>
  *
  * @phpstan-template T of Entities\Widgets\DataSources\IChannelPropertyDataSource
- * @phpstan-extends  DataSourceSchema<T>
+ * @phpstan-extends DataSourceSchema<T>
  */
 final class ChannelPropertyDataSourceSchema extends DataSourceSchema
 {
@@ -57,7 +57,7 @@ final class ChannelPropertyDataSourceSchema extends DataSourceSchema
 	 * @param Entities\Widgets\DataSources\IChannelPropertyDataSource $dataSource
 	 * @param JsonApi\Contracts\Schema\ContextInterface $context
 	 *
-	 * @return iterable<string, string|string[]|null>
+	 * @return iterable<string, mixed>
 	 *
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
 	 */

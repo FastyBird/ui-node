@@ -26,7 +26,8 @@ use Neomerx\JsonApi;
  *
  * @author          Adam Kadlec <adam.kadlec@fastybird.com>
  *
- * @phpstan-extends DisplaySchema<Entities\Widgets\Display\IChartGraph>
+ * @phpstan-template T of Entities\Widgets\Display\IChartGraph
+ * @phpstan-extends DisplaySchema<T>
  */
 final class ChartGraphSchema extends DisplaySchema
 {
@@ -56,7 +57,7 @@ final class ChartGraphSchema extends DisplaySchema
 	 * @param Entities\Widgets\Display\IChartGraph $display
 	 * @param JsonApi\Contracts\Schema\ContextInterface $context
 	 *
-	 * @return iterable<string, string|int|float|bool|null>
+	 * @return iterable<string, mixed>
 	 *
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
 	 */

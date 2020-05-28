@@ -25,7 +25,8 @@ use FastyBird\UINode\Entities;
  *
  * @author          Adam Kadlec <adam.kadlec@fastybird.com>
  *
- * @phpstan-extends WidgetSchema<Entities\Widgets\IAnalogActuator>
+ * @phpstan-template T of Entities\Widgets\IAnalogActuator
+ * @phpstan-extends WidgetSchema<T>
  */
 final class AnalogActuatorSchema extends WidgetSchema
 {

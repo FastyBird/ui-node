@@ -25,7 +25,8 @@ use FastyBird\UINode\Entities;
  *
  * @author          Adam Kadlec <adam.kadlec@fastybird.com>
  *
- * @phpstan-extends WidgetSchema<Entities\Widgets\IDigitalSensor>
+ * @phpstan-template T of Entities\Widgets\IDigitalSensor
+ * @phpstan-extends WidgetSchema<T>
  */
 final class DigitalSensorSchema extends WidgetSchema
 {

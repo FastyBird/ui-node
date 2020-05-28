@@ -15,6 +15,7 @@
 
 namespace FastyBird\UINode\Entities\Dashboards;
 
+use FastyBird\NodeDatabase\Entities as NodeDatabaseEntities;
 use FastyBird\UINode\Entities;
 use IPub\DoctrineTimestampable;
 
@@ -26,8 +27,8 @@ use IPub\DoctrineTimestampable;
  *
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
  */
-interface IDashboard extends Entities\IEntity,
-	Entities\IEntityParams,
+interface IDashboard extends NodeDatabaseEntities\IEntity,
+	NodeDatabaseEntities\IEntityParams,
 	DoctrineTimestampable\Entities\IEntityCreated, DoctrineTimestampable\Entities\IEntityUpdated
 {
 

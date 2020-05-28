@@ -17,9 +17,9 @@ namespace FastyBird\UINode\Hydrators\Widgets;
 
 use Contributte\Translation;
 use Doctrine\Common;
+use FastyBird\NodeDatabase\Hydrators as NodeDatabaseHydrators;
 use FastyBird\NodeWebServer\Exceptions as NodeWebServerExceptions;
 use FastyBird\UINode\Entities;
-use FastyBird\UINode\Hydrators;
 use FastyBird\UINode\Models;
 use FastyBird\UINode\Queries;
 use FastyBird\UINode\Schemas;
@@ -35,7 +35,7 @@ use Ramsey\Uuid;
  *
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
  */
-abstract class WidgetHydrator extends Hydrators\Hydrator
+abstract class WidgetHydrator extends NodeDatabaseHydrators\Hydrator
 {
 
 	/** @var string */
@@ -145,10 +145,7 @@ abstract class WidgetHydrator extends Hydrators\Hydrator
 			foreach ($dataSourcesRelation as $dataSourceRelation) {
 				if ($dataSourceRelation->getType() === Schemas\Widgets\DataSources\ChannelPropertyDataSourceSchema::SCHEMA_TYPE) {
 					foreach ($included->getAll() as $item) {
-						if (
-							$dataSourceRelation->getIdentifier() !== null
-							&& $item->getIdentifier()->getId() === $dataSourceRelation->getIdentifier()->getId()
-						) {
+						if ($item->getIdentifier()->getId() === $dataSourceRelation->getIdentifier()->getId()) {
 							$dataSources[] = [
 								'entity'  => Entities\Widgets\DataSources\ChannelPropertyDataSource::class,
 								'channel' => $item->get('channel'),

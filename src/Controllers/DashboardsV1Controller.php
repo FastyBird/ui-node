@@ -19,7 +19,6 @@ use Doctrine;
 use FastyBird\NodeWebServer\Exceptions as NodeWebServerExceptions;
 use FastyBird\NodeWebServer\Http as NodeWebServerHttp;
 use FastyBird\UINode\Controllers;
-use FastyBird\UINode\Entities;
 use FastyBird\UINode\Hydrators;
 use FastyBird\UINode\Models;
 use FastyBird\UINode\Queries;
@@ -140,13 +139,13 @@ final class DashboardsV1Controller extends BaseV1Controller
 
 			} catch (NodeWebServerExceptions\IJsonApiException $ex) {
 				// Revert all changes when error occur
-				$this->getOrmConnection()->rollback();
+				$this->getOrmConnection()->rollBack();
 
 				throw $ex;
 
 			} catch (DoctrineCrudExceptions\MissingRequiredFieldException $ex) {
 				// Revert all changes when error occur
-				$this->getOrmConnection()->rollback();
+				$this->getOrmConnection()->rollBack();
 
 				$pointer = 'data/attributes/' . $ex->getField();
 
@@ -161,7 +160,7 @@ final class DashboardsV1Controller extends BaseV1Controller
 
 			} catch (DoctrineCrudExceptions\EntityCreationException $ex) {
 				// Revert all changes when error occur
-				$this->getOrmConnection()->rollback();
+				$this->getOrmConnection()->rollBack();
 
 				throw new NodeWebServerExceptions\JsonApiErrorException(
 					StatusCodeInterface::STATUS_UNPROCESSABLE_ENTITY,
@@ -174,7 +173,7 @@ final class DashboardsV1Controller extends BaseV1Controller
 
 			} catch (Throwable $ex) {
 				// Revert all changes when error occur
-				$this->getOrmConnection()->rollback();
+				$this->getOrmConnection()->rollBack();
 
 				// Log catched exception
 				$this->logger->error('[CONTROLLER] ' . $ex->getMessage(), [
@@ -238,10 +237,7 @@ final class DashboardsV1Controller extends BaseV1Controller
 			// Start transaction connection to the database
 			$this->getOrmConnection()->beginTransaction();
 
-			if (
-				$document->getResource()->getType() === Schemas\Dashboards\DashboardSchema::SCHEMA_TYPE
-				&& $dashboard instanceof Entities\Dashboards\IDashboard
-			) {
+			if ($document->getResource()->getType() === Schemas\Dashboards\DashboardSchema::SCHEMA_TYPE) {
 				$updateDashboardData = $this->dashboardHydrator->hydrate($document, $dashboard);
 
 			} else {
@@ -262,13 +258,13 @@ final class DashboardsV1Controller extends BaseV1Controller
 
 		} catch (NodeWebServerExceptions\IJsonApiException $ex) {
 			// Revert all changes when error occur
-			$this->getOrmConnection()->rollback();
+			$this->getOrmConnection()->rollBack();
 
 			throw $ex;
 
 		} catch (Throwable $ex) {
 			// Revert all changes when error occur
-			$this->getOrmConnection()->rollback();
+			$this->getOrmConnection()->rollBack();
 
 			// Log catched exception
 			$this->logger->error('[CONTROLLER] ' . $ex->getMessage(), [
@@ -329,7 +325,7 @@ final class DashboardsV1Controller extends BaseV1Controller
 			]);
 
 			// Revert all changes when error occur
-			$this->getOrmConnection()->rollback();
+			$this->getOrmConnection()->rollBack();
 
 			throw new NodeWebServerExceptions\JsonApiErrorException(
 				StatusCodeInterface::STATUS_UNPROCESSABLE_ENTITY,

@@ -25,7 +25,8 @@ use FastyBird\UINode\Entities;
  *
  * @author          Adam Kadlec <adam.kadlec@fastybird.com>
  *
- * @phpstan-extends WidgetSchema<Entities\Widgets\IAnalogSensor>
+ * @phpstan-template T of Entities\Widgets\IAnalogSensor
+ * @phpstan-extends WidgetSchema<T>
  */
 final class AnalogSensorSchema extends WidgetSchema
 {

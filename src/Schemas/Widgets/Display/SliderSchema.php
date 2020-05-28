@@ -26,7 +26,8 @@ use Neomerx\JsonApi;
  *
  * @author          Adam Kadlec <adam.kadlec@fastybird.com>
  *
- * @phpstan-extends DisplaySchema<Entities\Widgets\Display\ISlider>
+ * @phpstan-template T of Entities\Widgets\Display\ISlider
+ * @phpstan-extends DisplaySchema<T>
  */
 final class SliderSchema extends DisplaySchema
 {
@@ -56,7 +57,7 @@ final class SliderSchema extends DisplaySchema
 	 * @param Entities\Widgets\Display\ISlider $display
 	 * @param JsonApi\Contracts\Schema\ContextInterface $context
 	 *
-	 * @return iterable<string, string|int|float|null>
+	 * @return iterable<string, mixed>
 	 *
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
 	 */

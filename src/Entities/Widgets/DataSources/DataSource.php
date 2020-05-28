@@ -16,6 +16,7 @@
 namespace FastyBird\UINode\Entities\Widgets\DataSources;
 
 use Doctrine\ORM\Mapping as ORM;
+use FastyBird\NodeDatabase\Entities as NodeDatabaseEntities;
 use FastyBird\UINode\Entities;
 use IPub\DoctrineTimestampable;
 use Ramsey\Uuid;
@@ -41,10 +42,10 @@ use Throwable;
  * })
  * @ORM\MappedSuperclass
  */
-abstract class DataSource extends Entities\Entity implements IDataSource
+abstract class DataSource extends NodeDatabaseEntities\Entity implements IDataSource
 {
 
-	use Entities\TEntityParams;
+	use NodeDatabaseEntities\TEntityParams;
 	use DoctrineTimestampable\Entities\TEntityCreated;
 	use DoctrineTimestampable\Entities\TEntityUpdated;
 

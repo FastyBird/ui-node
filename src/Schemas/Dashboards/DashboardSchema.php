@@ -77,7 +77,7 @@ final class DashboardSchema extends Schemas\JsonApiSchema
 	 * @param Entities\Dashboards\IDashboard $dashboard
 	 * @param JsonApi\Contracts\Schema\ContextInterface $context
 	 *
-	 * @return iterable<string, string|int|string[]|null>
+	 * @return iterable<string, mixed>
 	 *
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
 	 */

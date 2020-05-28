@@ -58,7 +58,9 @@ abstract class WidgetSchema extends Schemas\JsonApiSchema
 	 * @param Entities\Widgets\IWidget $widget
 	 * @param JsonApi\Contracts\Schema\ContextInterface $context
 	 *
-	 * @return iterable<string, string|string[]|null>
+	 * @return iterable<string, mixed>
+	 *
+	 * @phpstan-param T $widget
 	 *
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
 	 */
@@ -75,6 +77,8 @@ abstract class WidgetSchema extends Schemas\JsonApiSchema
 	 * @param Entities\Widgets\IWidget $widget
 	 *
 	 * @return JsonApi\Contracts\Schema\LinkInterface
+	 *
+	 * @phpstan-param T $widget
 	 *
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
 	 */
@@ -97,6 +101,8 @@ abstract class WidgetSchema extends Schemas\JsonApiSchema
 	 * @param JsonApi\Contracts\Schema\ContextInterface $context
 	 *
 	 * @return iterable<string, mixed>
+	 *
+	 * @phpstan-param T $widget
 	 *
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
 	 */
@@ -126,6 +132,8 @@ abstract class WidgetSchema extends Schemas\JsonApiSchema
 	 * @param string $name
 	 *
 	 * @return JsonApi\Contracts\Schema\LinkInterface
+	 *
+	 * @phpstan-param T $widget
 	 *
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
 	 */

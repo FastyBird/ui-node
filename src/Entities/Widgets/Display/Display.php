@@ -16,6 +16,7 @@
 namespace FastyBird\UINode\Entities\Widgets\Display;
 
 use Doctrine\ORM\Mapping as ORM;
+use FastyBird\NodeDatabase\Entities as NodeDatabaseEntities;
 use FastyBird\UINode\Entities;
 use IPub\DoctrineTimestampable;
 use Ramsey\Uuid;
@@ -47,10 +48,10 @@ use Throwable;
  * })
  * @ORM\MappedSuperclass
  */
-abstract class Display extends Entities\Entity implements IDisplay
+abstract class Display extends NodeDatabaseEntities\Entity implements IDisplay
 {
 
-	use Entities\TEntityParams;
+	use NodeDatabaseEntities\TEntityParams;
 	use DoctrineTimestampable\Entities\TEntityCreated;
 	use DoctrineTimestampable\Entities\TEntityUpdated;
 

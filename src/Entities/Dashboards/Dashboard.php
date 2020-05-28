@@ -17,6 +17,7 @@ namespace FastyBird\UINode\Entities\Dashboards;
 
 use Doctrine\Common;
 use Doctrine\ORM\Mapping as ORM;
+use FastyBird\NodeDatabase\Entities as NodeDatabaseEntities;
 use FastyBird\UINode\Entities;
 use IPub\DoctrineCrud\Mapping\Annotation as IPubDoctrine;
 use IPub\DoctrineTimestampable;
@@ -37,10 +38,10 @@ use Throwable;
  *     }
  * )
  */
-class Dashboard extends Entities\Entity implements IDashboard
+class Dashboard extends NodeDatabaseEntities\Entity implements IDashboard
 {
 
-	use Entities\TEntityParams;
+	use NodeDatabaseEntities\TEntityParams;
 	use DoctrineTimestampable\Entities\TEntityCreated;
 	use DoctrineTimestampable\Entities\TEntityUpdated;
 
@@ -194,7 +195,7 @@ class Dashboard extends Entities\Entity implements IDashboard
 	public function getGroup(string $id): ?Entities\Groups\IGroup
 	{
 		$found = $this->groups
-			->filter(function (Entities\Groups\IGroup $row) use ($id) {
+			->filter(function (Entities\Groups\IGroup $row) use ($id): bool {
 				return $id === $row->getPlainId();
 			});
 

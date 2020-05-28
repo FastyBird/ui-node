@@ -78,7 +78,7 @@ final class GroupSchema extends Schemas\JsonApiSchema
 	 * @param Entities\Groups\IGroup $group
 	 * @param JsonApi\Contracts\Schema\ContextInterface $context
 	 *
-	 * @return iterable<string, string|int|string[]|null>
+	 * @return iterable<string, mixed>
 	 *
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
 	 */
