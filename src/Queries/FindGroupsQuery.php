@@ -16,10 +16,8 @@
 namespace FastyBird\UINode\Queries;
 
 use Closure;
-use Doctrine\Common;
 use Doctrine\ORM;
 use FastyBird\UINode\Entities;
-use FastyBird\UINode\Exceptions;
 use IPub\DoctrineOrmQuery;
 use Ramsey\Uuid;
 
