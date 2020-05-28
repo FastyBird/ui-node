@@ -94,7 +94,6 @@ final class GroupsV1Controller extends BaseV1Controller
 
 		$findQuery = new Queries\FindGroupsQuery();
 		$findQuery->forDashboard($dashboard);
-		$findQuery->sortBy('name');
 
 		$groups = $this->groupRepository->getResultSet($findQuery);
 

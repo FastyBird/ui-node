@@ -99,7 +99,6 @@ final class WidgetsV1Controller extends BaseV1Controller
 		NodeWebServerHttp\Response $response
 	): NodeWebServerHttp\Response {
 		$findQuery = new Queries\FindWidgetsQuery();
-		$findQuery->sortBy('name');
 
 		$widgets = $this->widgetRepository->getResultSet($findQuery);
 

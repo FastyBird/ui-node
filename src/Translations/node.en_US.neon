@@ -15,3 +15,43 @@
 
 base:
 	messages:
+		notValidJson:
+			heading	: "Not valid content"
+			message	: "Provided request content is not valid JSON content"
+		notValidJsonApi:
+			heading	: "Not valid content"
+			message	: "Provided request content is not valid {JSON:API} content"
+		unknownRelation:
+			heading	: "Relation not found"
+			message	: "Requested unknown relation"
+		relationNotFound:
+			heading	: "Relation not found"
+			message	: "Requested relation %relation% was not found"
+		missingRequired:
+			heading	: "Missing required attribute"
+			message	: "Provided request is missing required attribute or relation"
+		invalid:
+			heading	: "Bad request"
+			message	: "Request resource identifier is invalid"
+		dashboardNotFound:
+			heading	: "Dashboard not found"
+			message	: "Requested dashboard was not found"
+		widgetNotFound:
+			heading	: "Widget not found"
+			message	: "Requested widget was not found"
+
+dashboards:
+	messages:
+		invalidType:
+			heading	: "Invalid type"
+			message	: "Provided dashboard entity type is not valid"
+		notCreated:
+			heading	: "System error"
+			message	: "Something went wrong, dashboard could not be created"
+		notUpdated:
+			heading	: "System error"
+			message	: "Something went wrong, dashboard could not be updated"
+		notDeleted:
+			heading	: "System error"
+			message	: "Something went wrong, dashboard could not be deleted"
+

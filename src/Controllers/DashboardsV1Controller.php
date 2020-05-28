@@ -86,7 +86,6 @@ final class DashboardsV1Controller extends BaseV1Controller
 		NodeWebServerHttp\Response $response
 	): NodeWebServerHttp\Response {
 		$findQuery = new Queries\FindDashboardsQuery();
-		$findQuery->sortBy('name');
 
 		$dashboards = $this->dashboardRepository->getResultSet($findQuery);
 

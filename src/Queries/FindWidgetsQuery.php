@@ -89,23 +89,6 @@ class FindWidgetsQuery extends DoctrineOrmQuery\QueryObject
 	}
 
 	/**
-	 * @param string $sortBy
-	 * @param string $sortDir
-	 *
-	 * @return void
-	 */
-	public function sortBy(string $sortBy, string $sortDir = Common\Collections\Criteria::ASC): void
-	{
-		if (!in_array($sortDir, [Common\Collections\Criteria::ASC, Common\Collections\Criteria::DESC], true)) {
-			throw new Exceptions\InvalidArgumentException('Provided sortDir value is not valid.');
-		}
-
-		$this->filter[] = function (ORM\QueryBuilder $qb) use ($sortBy, $sortDir): void {
-			$qb->addOrderBy($sortBy, $sortDir);
-		};
-	}
-
-	/**
 	 * @param ORM\EntityRepository<Entities\Widgets\Widget> $repository
 	 *
 	 * @return ORM\QueryBuilder
