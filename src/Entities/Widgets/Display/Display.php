@@ -68,7 +68,6 @@ abstract class Display extends NodeDatabaseEntities\Entity implements IDisplay
 	/**
 	 * @var Entities\Widgets\IWidget
 	 *
-	 * @IPubDoctrine\Crud(is="required")
 	 * @ORM\OneToOne(targetEntity="FastyBird\UINode\Entities\Widgets\Widget", inversedBy="display")
 	 * @ORM\JoinColumn(name="widget_id", referencedColumnName="widget_id", unique=true, onDelete="CASCADE", nullable=false)
 	 */
