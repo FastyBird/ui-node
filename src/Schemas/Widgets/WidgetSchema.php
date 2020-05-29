@@ -40,7 +40,7 @@ abstract class WidgetSchema extends Schemas\JsonApiSchema
 	 */
 	public const RELATIONSHIPS_DISPLAY = 'display';
 	public const RELATIONSHIPS_GROUPS = 'groups';
-	public const RELATIONSHIPS_DATA_SOURCES = 'data_sources';
+	public const RELATIONSHIPS_DATA_SOURCES = 'data-sources';
 
 	/** @var Routing\IRouter */
 	protected $router;

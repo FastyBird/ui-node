@@ -17,6 +17,7 @@ namespace FastyBird\UINode\Entities\Widgets\Display;
 
 use Doctrine\ORM\Mapping as ORM;
 use FastyBird\UINode\Entities;
+use Ramsey\Uuid;
 use Throwable;
 
 /**
@@ -35,12 +36,18 @@ class Slider extends Display implements ISlider
 	 * @param float $minimumValue
 	 * @param float $maximumValue
 	 * @param float $stepValue
+	 * @param Uuid\UuidInterface|null $id
 	 *
 	 * @throws Throwable
 	 */
-	public function __construct(Entities\Widgets\IWidget $widget, float $minimumValue, float $maximumValue, float $stepValue)
-	{
-		parent::__construct($widget);
+	public function __construct(
+		Entities\Widgets\IWidget $widget,
+		float $minimumValue,
+		float $maximumValue,
+		float $stepValue,
+		?Uuid\UuidInterface $id = null
+	) {
+		parent::__construct($widget, $id);
 
 		$this->setMinimumValue($minimumValue);
 		$this->setMaximumValue($maximumValue);

@@ -25,7 +25,7 @@ class AnalogSensor extends Sensor implements IAnalogSensor
 {
 
 	/** @var string[] */
-	public static $allowedDisplay = [
+	protected $allowedDisplay = [
 		Entities\Widgets\Display\IChartGraph::class,
 		Entities\Widgets\Display\IGauge::class,
 		Entities\Widgets\Display\IAnalogValue::class,

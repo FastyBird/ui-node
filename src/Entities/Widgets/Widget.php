@@ -47,6 +47,8 @@ use Throwable;
  *    "digital_sensor"     = "FastyBird\UINode\Entities\Widgets\DigitalSensor"
  * })
  * @ORM\MappedSuperclass
+ *
+ * @property-read string[] $allowedDisplay
  */
 abstract class Widget extends NodeDatabaseEntities\Entity implements IWidget
 {
@@ -93,12 +95,10 @@ abstract class Widget extends NodeDatabaseEntities\Entity implements IWidget
 	 * @var Common\Collections\Collection<int, Entities\Widgets\DataSources\IDataSource>
 	 *
 	 * @IPubDoctrine\Crud(is={"writable"})
-	 * @ORM\OneToMany(targetEntity="FastyBird\UINode\Entities\Widgets\DataSources\DataSource", mappedBy="widget", cascade={"persist", "remove"}, orphanRemoval=true)
+	 * @ORM\OneToMany(targetEntity="FastyBird\UINode\Entities\Widgets\DataSources\DataSource", mappedBy="widget", cascade={"persist", "remove"},
+	 *                                                                                         orphanRemoval=true)
 	 */
 	protected $dataSources;
-
-	/** @var string[] */
-	public static $allowedDisplay = [];
 
 	/**
 	 * @param string $name
@@ -139,7 +139,15 @@ abstract class Widget extends NodeDatabaseEntities\Entity implements IWidget
 	 */
 	public function setDisplay(Entities\Widgets\Display\IDisplay $display): void
 	{
-		if (!in_array(get_class($display), self::$allowedDisplay, true)) {
+		$isAllowed = false;
+
+		foreach ($this->allowedDisplay as $allowedClass) {
+			if ($display instanceof $allowedClass) {
+				$isAllowed = true;
+			}
+		}
+
+		if (!$isAllowed) {
 			throw new Exceptions\InvalidArgumentException('Provided display entity is not valid for this widget type');
 		}
 

@@ -74,12 +74,15 @@ abstract class Display extends NodeDatabaseEntities\Entity implements IDisplay
 
 	/**
 	 * @param Entities\Widgets\IWidget $widget
+	 * @param Uuid\UuidInterface|null $id
 	 *
 	 * @throws Throwable
 	 */
-	public function __construct(Entities\Widgets\IWidget $widget)
-	{
-		$this->id = Uuid\Uuid::uuid4();
+	public function __construct(
+		Entities\Widgets\IWidget $widget,
+		?Uuid\UuidInterface $id = null
+	) {
+		$this->id = $id ?? Uuid\Uuid::uuid4();
 
 		$this->widget = $widget;
 	}

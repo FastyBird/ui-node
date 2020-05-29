@@ -19,6 +19,7 @@ use Doctrine;
 use FastyBird\NodeWebServer\Exceptions as NodeWebServerExceptions;
 use FastyBird\NodeWebServer\Http as NodeWebServerHttp;
 use FastyBird\UINode\Controllers;
+use FastyBird\UINode\Exceptions\InvalidArgumentException;
 use FastyBird\UINode\Hydrators;
 use FastyBird\UINode\Models;
 use FastyBird\UINode\Queries;
@@ -209,7 +210,6 @@ final class WidgetsV1Controller extends BaseV1Controller
 			);
 
 		} catch (Throwable $ex) {
-			Debugger::log($ex);
 			// Revert all changes when error occur
 			$this->getOrmConnection()->rollBack();
 
@@ -396,6 +396,14 @@ final class WidgetsV1Controller extends BaseV1Controller
 		if ($relationEntity === Schemas\Widgets\WidgetSchema::RELATIONSHIPS_GROUPS) {
 			return $response
 				->withEntity(NodeWebServerHttp\ScalarEntity::from($widget->getGroups()));
+
+		} elseif ($relationEntity === Schemas\Widgets\WidgetSchema::RELATIONSHIPS_DISPLAY) {
+			return $response
+				->withEntity(NodeWebServerHttp\ScalarEntity::from($widget->getDisplay()));
+
+		} elseif ($relationEntity === Schemas\Widgets\WidgetSchema::RELATIONSHIPS_DATA_SOURCES) {
+			return $response
+				->withEntity(NodeWebServerHttp\ScalarEntity::from($widget->getDataSources()));
 		}
 
 		$this->throwUnknownRelation($relationEntity);

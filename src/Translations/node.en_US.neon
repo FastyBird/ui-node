@@ -72,3 +72,18 @@ groups:
 		notFound:
 			heading	: "Group not found"
 			message	: "Requested group was not found"
+
+widgets:
+	messages:
+		invalidType:
+			heading	: "Invalid type"
+			message	: "Provided widget entity type is not valid"
+		notCreated:
+			heading	: "System error"
+			message	: "Something went wrong, widget could not be created"
+		notUpdated:
+			heading	: "System error"
+			message	: "Something went wrong, widget could not be updated"
+		notDeleted:
+			heading	: "System error"
+			message	: "Something went wrong, widget could not be deleted"
