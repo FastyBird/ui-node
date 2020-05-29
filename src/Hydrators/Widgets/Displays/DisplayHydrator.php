@@ -17,6 +17,7 @@ namespace FastyBird\UINode\Hydrators\Widgets\Displays;
 
 use FastyBird\NodeDatabase\Hydrators as NodeDatabaseHydrators;
 use FastyBird\NodeWebServer\Exceptions as NodeWebServerExceptions;
+use FastyBird\UINode\Schemas;
 use Fig\Http\Message\StatusCodeInterface;
 use IPub\JsonAPIDocument;
 
@@ -33,6 +34,11 @@ abstract class DisplayHydrator extends NodeDatabaseHydrators\Hydrator
 
 	/** @var string */
 	protected $entityIdentifier = self::IDENTIFIER_KEY;
+
+	/** @var string[] */
+	protected $relationships = [
+		Schemas\Widgets\Display\DisplaySchema::RELATIONSHIPS_WIDGET,
+	];
 
 	/** @var string */
 	protected $translationDomain = 'node.display';

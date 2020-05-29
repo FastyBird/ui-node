@@ -1,7 +1,7 @@
 <?php declare(strict_types = 1);
 
 /**
- * DataSourceV1Controller.php
+ * DataSourcesV1Controller.php
  *
  * @license        More in license.md
  * @copyright      https://www.fastybird.com
@@ -39,7 +39,7 @@ use Throwable;
  *
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
  */
-final class DataSourceV1Controller extends BaseV1Controller
+final class DataSourcesV1Controller extends BaseV1Controller
 {
 
 	use Controllers\Finders\TWidgetFinder;
@@ -255,7 +255,7 @@ final class DataSourceV1Controller extends BaseV1Controller
 
 			if (
 				$document->getResource()->getType() === Schemas\Widgets\DataSources\ChannelPropertyDataSourceSchema::SCHEMA_TYPE
-				&& $dataSource instanceof Entities\Groups\IGroup
+				&& $dataSource instanceof Entities\Widgets\DataSources\ChannelPropertyDataSource
 			) {
 				$updateDataSourceData = $this->channelDataSourceHydrator->hydrate($document, $dataSource);
 
@@ -408,16 +408,16 @@ final class DataSourceV1Controller extends BaseV1Controller
 			if ($dataSource === null) {
 				throw new NodeWebServerExceptions\JsonApiErrorException(
 					StatusCodeInterface::STATUS_NOT_FOUND,
-					$this->translator->translate('//node.base.messages.dataSourceNotFound.heading'),
-					$this->translator->translate('//node.base.messages.dataSourceNotFound.message')
+					$this->translator->translate('messages.notFound.heading'),
+					$this->translator->translate('messages.notFound.message')
 				);
 			}
 
 		} catch (Uuid\Exception\InvalidUuidStringException $ex) {
 			throw new NodeWebServerExceptions\JsonApiErrorException(
 				StatusCodeInterface::STATUS_NOT_FOUND,
-				$this->translator->translate('//node.base.messages.dataSourceNotFound.heading'),
-				$this->translator->translate('//node.base.messages.dataSourceNotFound.message')
+				$this->translator->translate('messages.notFound.heading'),
+				$this->translator->translate('messages.notFound.message')
 			);
 		}
 

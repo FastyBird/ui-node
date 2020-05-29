@@ -49,7 +49,7 @@ class Router extends Routing\Router
 	/** @var Controllers\DisplayV1Controller */
 	private $displayV1Controller;
 
-	/** @var Controllers\DataSourceV1Controller */
+	/** @var Controllers\DataSourcesV1Controller */
 	private $dataSourceV1Controller;
 
 	public function __construct(
@@ -57,7 +57,7 @@ class Router extends Routing\Router
 		Controllers\GroupsV1Controller $groupsV1Controller,
 		Controllers\WidgetsV1Controller $widgetsV1Controller,
 		Controllers\DisplayV1Controller $displayV1Controller,
-		Controllers\DataSourceV1Controller $dataSourceV1Controller,
+		Controllers\DataSourcesV1Controller $dataSourceV1Controller,
 		?ResponseFactoryInterface $responseFactory = null
 	) {
 		parent::__construct($responseFactory, null);

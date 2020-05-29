@@ -158,7 +158,7 @@ services:
 
 	- {factory: FastyBird\UINode\Controllers\DisplayV1Controller, tags: [nette.inject]}
 
-	- {factory: FastyBird\UINode\Controllers\DataSourceV1Controller, tags: [nette.inject]}
+	- {factory: FastyBird\UINode\Controllers\DataSourcesV1Controller, tags: [nette.inject]}
 
 	# API schemas
 	#############

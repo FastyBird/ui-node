@@ -18,6 +18,7 @@ namespace FastyBird\UINode\Entities\Widgets\DataSources;
 use Doctrine\ORM\Mapping as ORM;
 use FastyBird\UINode\Entities;
 use IPub\DoctrineCrud\Mapping\Annotation as IPubDoctrine;
+use Ramsey\Uuid;
 use Throwable;
 
 /**
@@ -54,15 +55,17 @@ class ChannelPropertyDataSource extends DataSource implements IChannelPropertyDa
 	 * @param string $channel
 	 * @param string $property
 	 * @param Entities\Widgets\IWidget $widget
+	 * @param Uuid\UuidInterface|null $id
 	 *
 	 * @throws Throwable
 	 */
 	public function __construct(
 		string $channel,
 		string $property,
-		Entities\Widgets\IWidget $widget
+		Entities\Widgets\IWidget $widget,
+		?Uuid\UuidInterface $id = null
 	) {
-		parent::__construct($widget);
+		parent::__construct($widget, $id);
 
 		$this->channel = $channel;
 		$this->property = $property;

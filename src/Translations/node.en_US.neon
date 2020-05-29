@@ -96,3 +96,21 @@ display:
 		notUpdated:
 			heading	: "System error"
 			message	: "Something went wrong, widget display could not be updated"
+
+dataSources:
+	messages:
+		invalidType:
+			heading	: "Invalid type"
+			message	: "Provided data source entity type is not valid"
+		notCreated:
+			heading	: "System error"
+			message	: "Something went wrong, data source could not be created"
+		notUpdated:
+			heading	: "System error"
+			message	: "Something went wrong, data source could not be updated"
+		notDeleted:
+			heading	: "System error"
+			message	: "Something went wrong, data source could not be deleted"
+		notFound:
+			heading	: "Group not found"
+			message	: "Requested data source was not found"

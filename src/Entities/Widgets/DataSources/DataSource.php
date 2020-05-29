@@ -18,6 +18,7 @@ namespace FastyBird\UINode\Entities\Widgets\DataSources;
 use Doctrine\ORM\Mapping as ORM;
 use FastyBird\NodeDatabase\Entities as NodeDatabaseEntities;
 use FastyBird\UINode\Entities;
+use IPub\DoctrineCrud\Mapping\Annotation as IPubDoctrine;
 use IPub\DoctrineTimestampable;
 use Ramsey\Uuid;
 use Throwable;
@@ -61,6 +62,7 @@ abstract class DataSource extends NodeDatabaseEntities\Entity implements IDataSo
 	/**
 	 * @var Entities\Widgets\IWidget
 	 *
+	 * @IPubDoctrine\Crud(is="required")
 	 * @ORM\ManyToOne(targetEntity="FastyBird\UINode\Entities\Widgets\Widget", inversedBy="dataSources")
 	 * @ORM\JoinColumn(name="widget_id", referencedColumnName="widget_id", onDelete="CASCADE")
 	 */
@@ -68,12 +70,15 @@ abstract class DataSource extends NodeDatabaseEntities\Entity implements IDataSo
 
 	/**
 	 * @param Entities\Widgets\IWidget $widget
+	 * @param Uuid\UuidInterface|null $id
 	 *
 	 * @throws Throwable
 	 */
-	public function __construct(Entities\Widgets\IWidget $widget)
-	{
-		$this->id = Uuid\Uuid::uuid4();
+	public function __construct(
+		Entities\Widgets\IWidget $widget,
+		?Uuid\UuidInterface $id = null
+	) {
+		$this->id = $id ?? Uuid\Uuid::uuid4();
 
 		$this->widget = $widget;
 

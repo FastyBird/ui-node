@@ -16,6 +16,7 @@
 namespace FastyBird\UINode\Hydrators\Widgets\DataSources;
 
 use FastyBird\NodeDatabase\Hydrators as NodeDatabaseHydrators;
+use FastyBird\UINode\Schemas;
 
 /**
  * Data source entity hydrator
@@ -33,5 +34,10 @@ abstract class DataSourceHydrator extends NodeDatabaseHydrators\Hydrator
 
 	/** @var string */
 	protected $translationDomain = 'node.dataSources';
+
+	/** @var string[] */
+	protected $relationships = [
+		Schemas\Widgets\DataSources\DataSourceSchema::RELATIONSHIPS_WIDGET,
+	];
 
 }
