@@ -19,7 +19,6 @@ use Doctrine;
 use FastyBird\NodeWebServer\Exceptions as NodeWebServerExceptions;
 use FastyBird\NodeWebServer\Http as NodeWebServerHttp;
 use FastyBird\UINode\Controllers;
-use FastyBird\UINode\Exceptions\InvalidArgumentException;
 use FastyBird\UINode\Hydrators;
 use FastyBird\UINode\Models;
 use FastyBird\UINode\Queries;
@@ -29,7 +28,6 @@ use Fig\Http\Message\StatusCodeInterface;
 use IPub\DoctrineCrud\Exceptions as DoctrineCrudExceptions;
 use Psr\Http\Message;
 use Throwable;
-use Tracy\Debugger;
 
 /**
  * API widgets controller

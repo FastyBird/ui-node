@@ -117,7 +117,11 @@ abstract class WidgetHydrator extends NodeDatabaseHydrators\Hydrator
 			return null;
 		}
 
-		$result = $this->buildDisplay($relationship->getData()->getType(), $relationship, $relationship->getIdentifier()->getId());
+		$result = $this->buildDisplay(
+			$relationship->getData()->getType(),
+			$relationship,
+			$relationship->getIdentifier() !== null ? $relationship->getIdentifier()->getId() : null
+		);
 
 		return $result;
 	}
@@ -238,15 +242,15 @@ abstract class WidgetHydrator extends NodeDatabaseHydrators\Hydrator
 
 	/**
 	 * @param string $type
-	 * @param JsonAPIDocument\Objects\IStandardObject $attributes
-	 * @param string $identifier
+	 * @param JsonAPIDocument\Objects\IStandardObject<mixed> $attributes
+	 * @param string|null $identifier
 	 *
 	 * @return mixed[]|null
 	 */
 	private function buildDisplay(
 		string $type,
 		JsonAPIDocument\Objects\IStandardObject $attributes,
-		string $identifier
+		?string $identifier = null
 	): ?array {
 		switch ($type) {
 			case Schemas\Widgets\Display\AnalogValueSchema::SCHEMA_TYPE:
@@ -261,7 +265,7 @@ abstract class WidgetHydrator extends NodeDatabaseHydrators\Hydrator
 				);
 
 				$display['entity'] = Entities\Widgets\Display\AnalogValue::class;
-				$display[self::IDENTIFIER_KEY] = Uuid\Uuid::fromString($identifier);
+				$display[self::IDENTIFIER_KEY] = $identifier !== null ? Uuid\Uuid::fromString($identifier) : $identifier;
 
 				return $display;
 
@@ -277,7 +281,7 @@ abstract class WidgetHydrator extends NodeDatabaseHydrators\Hydrator
 				);
 
 				$display['entity'] = Entities\Widgets\Display\Button::class;
-				$display[self::IDENTIFIER_KEY] = Uuid\Uuid::fromString($identifier);
+				$display[self::IDENTIFIER_KEY] = $identifier !== null ? Uuid\Uuid::fromString($identifier) : $identifier;
 
 				return $display;
 
@@ -293,7 +297,7 @@ abstract class WidgetHydrator extends NodeDatabaseHydrators\Hydrator
 				);
 
 				$display['entity'] = Entities\Widgets\Display\ChartGraph::class;
-				$display[self::IDENTIFIER_KEY] = Uuid\Uuid::fromString($identifier);
+				$display[self::IDENTIFIER_KEY] = $identifier !== null ? Uuid\Uuid::fromString($identifier) : $identifier;
 
 				return $display;
 
@@ -309,7 +313,7 @@ abstract class WidgetHydrator extends NodeDatabaseHydrators\Hydrator
 				);
 
 				$display['entity'] = Entities\Widgets\Display\DigitalValue::class;
-				$display[self::IDENTIFIER_KEY] = Uuid\Uuid::fromString($identifier);
+				$display[self::IDENTIFIER_KEY] = $identifier !== null ? Uuid\Uuid::fromString($identifier) : $identifier;
 
 				return $display;
 
@@ -325,7 +329,7 @@ abstract class WidgetHydrator extends NodeDatabaseHydrators\Hydrator
 				);
 
 				$display['entity'] = Entities\Widgets\Display\Gauge::class;
-				$display[self::IDENTIFIER_KEY] = Uuid\Uuid::fromString($identifier);
+				$display[self::IDENTIFIER_KEY] = $identifier !== null ? Uuid\Uuid::fromString($identifier) : $identifier;
 
 				return $display;
 
@@ -341,7 +345,7 @@ abstract class WidgetHydrator extends NodeDatabaseHydrators\Hydrator
 				);
 
 				$display['entity'] = Entities\Widgets\Display\GroupedButton::class;
-				$display[self::IDENTIFIER_KEY] = Uuid\Uuid::fromString($identifier);
+				$display[self::IDENTIFIER_KEY] = $identifier !== null ? Uuid\Uuid::fromString($identifier) : $identifier;
 
 				return $display;
 
@@ -357,7 +361,7 @@ abstract class WidgetHydrator extends NodeDatabaseHydrators\Hydrator
 				);
 
 				$display['entity'] = Entities\Widgets\Display\Slider::class;
-				$display[self::IDENTIFIER_KEY] = Uuid\Uuid::fromString($identifier);
+				$display[self::IDENTIFIER_KEY] = $identifier !== null ? Uuid\Uuid::fromString($identifier) : $identifier;
 
 				return $display;
 		}
