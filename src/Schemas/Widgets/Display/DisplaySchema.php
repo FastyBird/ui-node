@@ -107,7 +107,7 @@ abstract class DisplaySchema extends Schemas\JsonApiSchema
 			self::RELATIONSHIPS_WIDGET => [
 				self::RELATIONSHIP_DATA          => $display->getWidget(),
 				self::RELATIONSHIP_LINKS_SELF    => true,
-				self::RELATIONSHIP_LINKS_RELATED => false,
+				self::RELATIONSHIP_LINKS_RELATED => true,
 			],
 		];
 	}
@@ -138,6 +138,36 @@ abstract class DisplaySchema extends Schemas\JsonApiSchema
 		}
 
 		return parent::getRelationshipRelatedLink($display, $name);
+	}
+
+	/**
+	 * @param Entities\Widgets\Display\IDisplay $display
+	 * @param string $name
+	 *
+	 * @return JsonApi\Contracts\Schema\LinkInterface
+	 *
+	 * @phpstan-param T $display
+	 *
+	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
+	 */
+	public function getRelationshipSelfLink($display, string $name): JsonApi\Contracts\Schema\LinkInterface
+	{
+		if ($name === self::RELATIONSHIPS_WIDGET) {
+			return new JsonApi\Schema\Link(
+				false,
+				$this->router->urlFor(
+					'widget.display.relationship',
+					[
+						Router\Router::URL_ITEM_ID     => $display->getPlainId(),
+						Router\Router::URL_WIDGET_ID   => $display->getWidget()->getPlainId(),
+						Router\Router::RELATION_ENTITY => $name,
+					]
+				),
+				false
+			);
+		}
+
+		return parent::getRelationshipSelfLink($display, $name);
 	}
 
 }

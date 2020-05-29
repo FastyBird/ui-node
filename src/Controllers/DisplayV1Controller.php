@@ -138,14 +138,6 @@ final class DisplayV1Controller extends BaseV1Controller
 	): NodeWebServerHttp\Response {
 		$document = $this->createDocument($request);
 
-		if ($request->getAttribute(Router\Router::URL_ITEM_ID) !== $document->getResource()->getIdentifier()->getId()) {
-			throw new NodeWebServerExceptions\JsonApiErrorException(
-				StatusCodeInterface::STATUS_BAD_REQUEST,
-				$this->translator->translate('//node.base.messages.invalid.heading'),
-				$this->translator->translate('//node.base.messages.invalid.message')
-			);
-		}
-
 		// At first, try to load widget
 		$widget = $this->findWidget($request->getAttribute(Router\Router::URL_WIDGET_ID));
 
