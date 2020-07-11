@@ -15,7 +15,7 @@
 
 namespace FastyBird\UINode\Hydrators\Widgets\Displays;
 
-use FastyBird\NodeWebServer\Exceptions as NodeWebServerExceptions;
+use FastyBird\NodeJsonApi\Exceptions as NodeJsonApiExceptions;
 use FastyBird\UINode\Entities;
 use Fig\Http\Message\StatusCodeInterface;
 use IPub\JsonAPIDocument;
@@ -53,12 +53,12 @@ final class ChartGraphHydrator extends DisplayHydrator
 	 *
 	 * @return bool
 	 *
-	 * @throws NodeWebServerExceptions\IJsonApiException
+	 * @throws NodeJsonApiExceptions\IJsonApiException
 	 */
 	protected function hydrateEnableMinMaxAttribute(JsonAPIDocument\Objects\IStandardObject $attributes): bool
 	{
 		if ($attributes->get('enable_min_max') === null || (string) $attributes->get('enable_min_max') === '') {
-			throw new NodeWebServerExceptions\JsonApiErrorException(
+			throw new NodeJsonApiExceptions\JsonApiErrorException(
 				StatusCodeInterface::STATUS_UNPROCESSABLE_ENTITY,
 				$this->translator->translate('//node.base.messages.missingRequired.heading'),
 				$this->translator->translate('//node.base.messages.missingRequired.message'),

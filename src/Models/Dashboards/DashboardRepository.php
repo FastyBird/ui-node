@@ -16,7 +16,7 @@
 namespace FastyBird\UINode\Models\Dashboards;
 
 use Doctrine\Common;
-use Doctrine\ORM;
+use Doctrine\Persistence;
 use FastyBird\UINode\Entities;
 use FastyBird\UINode\Exceptions;
 use FastyBird\UINode\Queries;
@@ -40,7 +40,7 @@ final class DashboardRepository implements IDashboardRepository
 	/** @var Common\Persistence\ManagerRegistry */
 	private $managerRegistry;
 
-	/** @var ORM\EntityRepository<Entities\Dashboards\Dashboard>|null */
+	/** @var Persistence\ObjectRepository<Entities\Dashboards\Dashboard>|null */
 	public $repository = null;
 
 	public function __construct(Common\Persistence\ManagerRegistry $managerRegistry)
@@ -89,9 +89,9 @@ final class DashboardRepository implements IDashboardRepository
 	}
 
 	/**
-	 * @return ORM\EntityRepository<Entities\Dashboards\Dashboard>
+	 * @return Persistence\ObjectRepository<Entities\Dashboards\Dashboard>
 	 */
-	private function getRepository(): ORM\EntityRepository
+	private function getRepository(): Persistence\ObjectRepository
 	{
 		if ($this->repository === null) {
 			$this->repository = $this->managerRegistry->getRepository(Entities\Dashboards\Dashboard::class);

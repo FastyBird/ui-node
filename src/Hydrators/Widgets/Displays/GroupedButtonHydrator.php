@@ -15,7 +15,7 @@
 
 namespace FastyBird\UINode\Hydrators\Widgets\Displays;
 
-use FastyBird\NodeWebServer\Exceptions as NodeWebServerExceptions;
+use FastyBird\NodeJsonApi\Exceptions as NodeJsonApiExceptions;
 use FastyBird\UINode\Entities;
 use FastyBird\UINode\Types;
 use Fig\Http\Message\StatusCodeInterface;
@@ -50,12 +50,12 @@ final class GroupedButtonHydrator extends DisplayHydrator
 	 *
 	 * @return Types\WidgetIconType
 	 *
-	 * @throws NodeWebServerExceptions\IJsonApiException
+	 * @throws NodeJsonApiExceptions\IJsonApiException
 	 */
 	protected function hydrateIconAttribute(JsonAPIDocument\Objects\IStandardObject $attributes): Types\WidgetIconType
 	{
 		if ($attributes->get('icon') === null || (string) $attributes->get('icon') === '') {
-			throw new NodeWebServerExceptions\JsonApiErrorException(
+			throw new NodeJsonApiExceptions\JsonApiErrorException(
 				StatusCodeInterface::STATUS_UNPROCESSABLE_ENTITY,
 				$this->translator->translate('//node.base.messages.missingRequired.heading'),
 				$this->translator->translate('//node.base.messages.missingRequired.message'),
@@ -66,7 +66,7 @@ final class GroupedButtonHydrator extends DisplayHydrator
 		}
 
 		if (!Types\WidgetIconType::isValidValue($attributes->get('icon'))) {
-			throw new NodeWebServerExceptions\JsonApiErrorException(
+			throw new NodeJsonApiExceptions\JsonApiErrorException(
 				StatusCodeInterface::STATUS_UNPROCESSABLE_ENTITY,
 				$this->translator->translate('messages.invalidValue.heading'),
 				$this->translator->translate('messages.invalidValue.message'),

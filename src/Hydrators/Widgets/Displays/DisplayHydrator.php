@@ -15,8 +15,8 @@
 
 namespace FastyBird\UINode\Hydrators\Widgets\Displays;
 
-use FastyBird\NodeDatabase\Hydrators as NodeDatabaseHydrators;
-use FastyBird\NodeWebServer\Exceptions as NodeWebServerExceptions;
+use FastyBird\NodeJsonApi\Exceptions as NodeJsonApiExceptions;
+use FastyBird\NodeJsonApi\Hydrators as NodeJsonApiHydrators;
 use FastyBird\UINode\Schemas;
 use Fig\Http\Message\StatusCodeInterface;
 use IPub\JsonAPIDocument;
@@ -29,7 +29,7 @@ use IPub\JsonAPIDocument;
  *
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
  */
-abstract class DisplayHydrator extends NodeDatabaseHydrators\Hydrator
+abstract class DisplayHydrator extends NodeJsonApiHydrators\Hydrator
 {
 
 	/** @var string */
@@ -48,12 +48,12 @@ abstract class DisplayHydrator extends NodeDatabaseHydrators\Hydrator
 	 *
 	 * @return int
 	 *
-	 * @throws NodeWebServerExceptions\IJsonApiException
+	 * @throws NodeJsonApiExceptions\IJsonApiException
 	 */
 	protected function hydratePrecisionAttribute(JsonAPIDocument\Objects\IStandardObject $attributes): int
 	{
 		if ($attributes->get('precision') === null || (string) $attributes->get('precision') === '') {
-			throw new NodeWebServerExceptions\JsonApiErrorException(
+			throw new NodeJsonApiExceptions\JsonApiErrorException(
 				StatusCodeInterface::STATUS_UNPROCESSABLE_ENTITY,
 				$this->translator->translate('//node.base.messages.missingRequired.heading'),
 				$this->translator->translate('//node.base.messages.missingRequired.message'),
@@ -71,12 +71,12 @@ abstract class DisplayHydrator extends NodeDatabaseHydrators\Hydrator
 	 *
 	 * @return float
 	 *
-	 * @throws NodeWebServerExceptions\IJsonApiException
+	 * @throws NodeJsonApiExceptions\IJsonApiException
 	 */
 	protected function hydrateMinimumValueAttribute(JsonAPIDocument\Objects\IStandardObject $attributes): float
 	{
 		if ($attributes->get('minimum_value') === null || (string) $attributes->get('minimum_value') === '') {
-			throw new NodeWebServerExceptions\JsonApiErrorException(
+			throw new NodeJsonApiExceptions\JsonApiErrorException(
 				StatusCodeInterface::STATUS_UNPROCESSABLE_ENTITY,
 				$this->translator->translate('//node.base.messages.missingRequired.heading'),
 				$this->translator->translate('//node.base.messages.missingRequired.message'),
@@ -94,12 +94,12 @@ abstract class DisplayHydrator extends NodeDatabaseHydrators\Hydrator
 	 *
 	 * @return float
 	 *
-	 * @throws NodeWebServerExceptions\IJsonApiException
+	 * @throws NodeJsonApiExceptions\IJsonApiException
 	 */
 	protected function hydrateMaximumValueAttribute(JsonAPIDocument\Objects\IStandardObject $attributes): float
 	{
 		if ($attributes->get('maximum_value') === null || (string) $attributes->get('maximum_value') === '') {
-			throw new NodeWebServerExceptions\JsonApiErrorException(
+			throw new NodeJsonApiExceptions\JsonApiErrorException(
 				StatusCodeInterface::STATUS_UNPROCESSABLE_ENTITY,
 				$this->translator->translate('//node.base.messages.missingRequired.heading'),
 				$this->translator->translate('//node.base.messages.missingRequired.message'),
@@ -117,12 +117,12 @@ abstract class DisplayHydrator extends NodeDatabaseHydrators\Hydrator
 	 *
 	 * @return float
 	 *
-	 * @throws NodeWebServerExceptions\IJsonApiException
+	 * @throws NodeJsonApiExceptions\IJsonApiException
 	 */
 	protected function hydrateStepValueAttribute(JsonAPIDocument\Objects\IStandardObject $attributes): float
 	{
 		if ($attributes->get('step_value') === null || (string) $attributes->get('step_value') === '') {
-			throw new NodeWebServerExceptions\JsonApiErrorException(
+			throw new NodeJsonApiExceptions\JsonApiErrorException(
 				StatusCodeInterface::STATUS_UNPROCESSABLE_ENTITY,
 				$this->translator->translate('//node.base.messages.missingRequired.heading'),
 				$this->translator->translate('//node.base.messages.missingRequired.message'),

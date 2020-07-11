@@ -16,7 +16,7 @@
 namespace FastyBird\UINode\Models\Widgets\DataSources;
 
 use Doctrine\Common;
-use Doctrine\ORM;
+use Doctrine\Persistence;
 use FastyBird\UINode\Entities;
 use FastyBird\UINode\Exceptions;
 use FastyBird\UINode\Queries;
@@ -40,7 +40,7 @@ final class DataSourceRepository implements IDataSourceRepository
 	/** @var Common\Persistence\ManagerRegistry */
 	private $managerRegistry;
 
-	/** @var ORM\EntityRepository<Entities\Widgets\DataSources\DataSource>[] */
+	/** @var Persistence\ObjectRepository<Entities\Widgets\DataSources\DataSource>[] */
 	private $repository = [];
 
 	public function __construct(Common\Persistence\ManagerRegistry $managerRegistry)
@@ -96,12 +96,12 @@ final class DataSourceRepository implements IDataSourceRepository
 	/**
 	 * @param string $type
 	 *
-	 * @return ORM\EntityRepository<Entities\Widgets\DataSources\DataSource>
+	 * @return Persistence\ObjectRepository<Entities\Widgets\DataSources\DataSource>
 	 *
 	 * @phpstan-template T of Entities\Widgets\DataSources\DataSource
 	 * @phpstan-param    class-string<T> $type
 	 */
-	private function getRepository(string $type): ORM\EntityRepository
+	private function getRepository(string $type): Persistence\ObjectRepository
 	{
 		if (!isset($this->repository[$type])) {
 			$this->repository[$type] = $this->managerRegistry->getRepository($type);

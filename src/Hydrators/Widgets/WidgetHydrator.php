@@ -17,8 +17,8 @@ namespace FastyBird\UINode\Hydrators\Widgets;
 
 use Contributte\Translation;
 use Doctrine\Common;
-use FastyBird\NodeDatabase\Hydrators as NodeDatabaseHydrators;
-use FastyBird\NodeWebServer\Exceptions as NodeWebServerExceptions;
+use FastyBird\NodeJsonApi\Exceptions as NodeJsonApiExceptions;
+use FastyBird\NodeJsonApi\Hydrators as NodeJsonApiHydrators;
 use FastyBird\UINode\Entities;
 use FastyBird\UINode\Models;
 use FastyBird\UINode\Queries;
@@ -36,7 +36,7 @@ use stdClass;
  *
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
  */
-abstract class WidgetHydrator extends NodeDatabaseHydrators\Hydrator
+abstract class WidgetHydrator extends NodeJsonApiHydrators\Hydrator
 {
 
 	/** @var string */
@@ -132,14 +132,14 @@ abstract class WidgetHydrator extends NodeDatabaseHydrators\Hydrator
 	 *
 	 * @return mixed[]
 	 *
-	 * @throws NodeWebServerExceptions\IJsonApiException
+	 * @throws NodeJsonApiExceptions\IJsonApiException
 	 */
 	protected function hydrateDataSourcesRelationship(
 		JsonAPIDocument\Objects\IRelationship $relationship,
 		?JsonAPIDocument\Objects\IResourceObjectCollection $included
 	): array {
 		if ($included === null) {
-			throw new NodeWebServerExceptions\JsonApiErrorException(
+			throw new NodeJsonApiExceptions\JsonApiErrorException(
 				StatusCodeInterface::STATUS_UNPROCESSABLE_ENTITY,
 				$this->translator->translate('messages.missingDataSource.heading'),
 				$this->translator->translate('messages.missingDataSource.message'),
@@ -169,7 +169,7 @@ abstract class WidgetHydrator extends NodeDatabaseHydrators\Hydrator
 		}
 
 		if ($dataSources === []) {
-			throw new NodeWebServerExceptions\JsonApiErrorException(
+			throw new NodeJsonApiExceptions\JsonApiErrorException(
 				StatusCodeInterface::STATUS_UNPROCESSABLE_ENTITY,
 				$this->translator->translate('messages.missingDataSource.heading'),
 				$this->translator->translate('messages.missingDataSource.message'),
@@ -188,7 +188,7 @@ abstract class WidgetHydrator extends NodeDatabaseHydrators\Hydrator
 	 *
 	 * @return mixed[]|null
 	 *
-	 * @throws NodeWebServerExceptions\IJsonApiException
+	 * @throws NodeJsonApiExceptions\IJsonApiException
 	 */
 	protected function hydrateGroupsRelationship(
 		JsonAPIDocument\Objects\IRelationship $relationship,
@@ -214,7 +214,7 @@ abstract class WidgetHydrator extends NodeDatabaseHydrators\Hydrator
 					}
 
 				} catch (Uuid\Exception\InvalidUuidStringException $ex) {
-					throw new NodeWebServerExceptions\JsonApiErrorException(
+					throw new NodeJsonApiExceptions\JsonApiErrorException(
 						StatusCodeInterface::STATUS_UNPROCESSABLE_ENTITY,
 						$this->translator->translate('//node.base.messages.invalid.heading'),
 						$this->translator->translate('//node.base.messages.invalid.message'),
@@ -227,7 +227,7 @@ abstract class WidgetHydrator extends NodeDatabaseHydrators\Hydrator
 		}
 
 		if ($groups === []) {
-			throw new NodeWebServerExceptions\JsonApiErrorException(
+			throw new NodeJsonApiExceptions\JsonApiErrorException(
 				StatusCodeInterface::STATUS_UNPROCESSABLE_ENTITY,
 				$this->translator->translate('messages.missingGroups.heading'),
 				$this->translator->translate('messages.missingGroups.message'),

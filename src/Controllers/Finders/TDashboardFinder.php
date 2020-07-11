@@ -15,7 +15,7 @@
 
 namespace FastyBird\UINode\Controllers\Finders;
 
-use FastyBird\NodeWebServer\Exceptions as NodeWebServerExceptions;
+use FastyBird\NodeJsonApi\Exceptions as NodeJsonApiExceptions;
 use FastyBird\UINode\Entities;
 use FastyBird\UINode\Models;
 use FastyBird\UINode\Queries;
@@ -35,7 +35,7 @@ trait TDashboardFinder
 	 *
 	 * @return Entities\Dashboards\IDashboard
 	 *
-	 * @throws NodeWebServerExceptions\IJsonApiException
+	 * @throws NodeJsonApiExceptions\IJsonApiException
 	 */
 	protected function findDashboard(string $id): Entities\Dashboards\IDashboard
 	{
@@ -46,7 +46,7 @@ trait TDashboardFinder
 			$dashboard = $this->dashboardRepository->findOneBy($findQuery);
 
 			if ($dashboard === null) {
-				throw new NodeWebServerExceptions\JsonApiErrorException(
+				throw new NodeJsonApiExceptions\JsonApiErrorException(
 					StatusCodeInterface::STATUS_NOT_FOUND,
 					$this->translator->translate('//node.base.messages.dashboardNotFound.heading'),
 					$this->translator->translate('//node.base.messages.dashboardNotFound.message')
@@ -54,7 +54,7 @@ trait TDashboardFinder
 			}
 
 		} catch (Uuid\Exception\InvalidUuidStringException $ex) {
-			throw new NodeWebServerExceptions\JsonApiErrorException(
+			throw new NodeJsonApiExceptions\JsonApiErrorException(
 				StatusCodeInterface::STATUS_NOT_FOUND,
 				$this->translator->translate('//node.base.messages.dashboardNotFound.heading'),
 				$this->translator->translate('//node.base.messages.dashboardNotFound.message')

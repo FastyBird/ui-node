@@ -16,7 +16,7 @@
 namespace FastyBird\UINode\Models\Groups;
 
 use Doctrine\Common;
-use Doctrine\ORM;
+use Doctrine\Persistence;
 use FastyBird\UINode\Entities;
 use FastyBird\UINode\Exceptions;
 use FastyBird\UINode\Queries;
@@ -40,7 +40,7 @@ final class GroupRepository implements IGroupRepository
 	/** @var Common\Persistence\ManagerRegistry */
 	private $managerRegistry;
 
-	/** @var ORM\EntityRepository<Entities\Groups\Group>|null */
+	/** @var Persistence\ObjectRepository<Entities\Groups\Group>|null */
 	public $repository = null;
 
 	public function __construct(Common\Persistence\ManagerRegistry $managerRegistry)
@@ -89,9 +89,9 @@ final class GroupRepository implements IGroupRepository
 	}
 
 	/**
-	 * @return ORM\EntityRepository<Entities\Groups\Group>
+	 * @return Persistence\ObjectRepository<Entities\Groups\Group>
 	 */
-	private function getRepository(): ORM\EntityRepository
+	private function getRepository(): Persistence\ObjectRepository
 	{
 		if ($this->repository === null) {
 			$this->repository = $this->managerRegistry->getRepository(Entities\Groups\Group::class);

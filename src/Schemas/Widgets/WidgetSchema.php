@@ -15,9 +15,9 @@
 
 namespace FastyBird\UINode\Schemas\Widgets;
 
+use FastyBird\NodeJsonApi\Schemas as NodeJsonApiSchemas;
 use FastyBird\UINode\Entities;
 use FastyBird\UINode\Router;
-use FastyBird\UINode\Schemas;
 use IPub\SlimRouter\Routing;
 use Neomerx\JsonApi;
 
@@ -30,9 +30,9 @@ use Neomerx\JsonApi;
  * @author           Adam Kadlec <adam.kadlec@fastybird.com>
  *
  * @phpstan-template T of Entities\Widgets\IWidget
- * @phpstan-extends  Schemas\JsonApiSchema<T>
+ * @phpstan-extends  NodeJsonApiSchemas\JsonApiSchema<T>
  */
-abstract class WidgetSchema extends Schemas\JsonApiSchema
+abstract class WidgetSchema extends NodeJsonApiSchemas\JsonApiSchema
 {
 
 	/**

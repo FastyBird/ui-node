@@ -15,7 +15,7 @@
 
 namespace FastyBird\UINode\Hydrators\Widgets\DataSources;
 
-use FastyBird\NodeDatabase\Hydrators as NodeDatabaseHydrators;
+use FastyBird\NodeJsonApi\Hydrators as NodeJsonApiHydrators;
 use FastyBird\UINode\Schemas;
 
 /**
@@ -26,7 +26,7 @@ use FastyBird\UINode\Schemas;
  *
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
  */
-abstract class DataSourceHydrator extends NodeDatabaseHydrators\Hydrator
+abstract class DataSourceHydrator extends NodeJsonApiHydrators\Hydrator
 {
 
 	/** @var string */

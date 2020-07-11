@@ -16,7 +16,7 @@
 namespace FastyBird\UINode\Controllers;
 
 use Doctrine;
-use FastyBird\NodeWebServer\Exceptions as NodeWebServerExceptions;
+use FastyBird\NodeJsonApi\Exceptions as NodeJsonApiExceptions;
 use FastyBird\NodeWebServer\Http as NodeWebServerHttp;
 use FastyBird\UINode\Controllers;
 use FastyBird\UINode\Hydrators;
@@ -99,7 +99,7 @@ final class DashboardsV1Controller extends BaseV1Controller
 	 *
 	 * @return NodeWebServerHttp\Response
 	 *
-	 * @throws NodeWebServerExceptions\IJsonApiException
+	 * @throws NodeJsonApiExceptions\IJsonApiException
 	 */
 	public function read(
 		Message\ServerRequestInterface $request,
@@ -117,7 +117,7 @@ final class DashboardsV1Controller extends BaseV1Controller
 	 *
 	 * @return NodeWebServerHttp\Response
 	 *
-	 * @throws NodeWebServerExceptions\IJsonApiException
+	 * @throws NodeJsonApiExceptions\IJsonApiException
 	 * @throws Doctrine\DBAL\ConnectionException
 	 */
 	public function create(
@@ -136,7 +136,7 @@ final class DashboardsV1Controller extends BaseV1Controller
 				// Commit all changes into database
 				$this->getOrmConnection()->commit();
 
-			} catch (NodeWebServerExceptions\IJsonApiException $ex) {
+			} catch (NodeJsonApiExceptions\IJsonApiException $ex) {
 				// Revert all changes when error occur
 				$this->getOrmConnection()->rollBack();
 
@@ -148,7 +148,7 @@ final class DashboardsV1Controller extends BaseV1Controller
 
 				$pointer = 'data/attributes/' . $ex->getField();
 
-				throw new NodeWebServerExceptions\JsonApiErrorException(
+				throw new NodeJsonApiExceptions\JsonApiErrorException(
 					StatusCodeInterface::STATUS_UNPROCESSABLE_ENTITY,
 					$this->translator->translate('//node.base.messages.missingRequired.heading'),
 					$this->translator->translate('//node.base.messages.missingRequired.message'),
@@ -161,7 +161,7 @@ final class DashboardsV1Controller extends BaseV1Controller
 				// Revert all changes when error occur
 				$this->getOrmConnection()->rollBack();
 
-				throw new NodeWebServerExceptions\JsonApiErrorException(
+				throw new NodeJsonApiExceptions\JsonApiErrorException(
 					StatusCodeInterface::STATUS_UNPROCESSABLE_ENTITY,
 					$this->translator->translate('//node.base.messages.missingRequired.heading'),
 					$this->translator->translate('//node.base.messages.missingRequired.message'),
@@ -182,7 +182,7 @@ final class DashboardsV1Controller extends BaseV1Controller
 					],
 				]);
 
-				throw new NodeWebServerExceptions\JsonApiErrorException(
+				throw new NodeJsonApiExceptions\JsonApiErrorException(
 					StatusCodeInterface::STATUS_UNPROCESSABLE_ENTITY,
 					$this->translator->translate('messages.notCreated.heading'),
 					$this->translator->translate('messages.notCreated.message')
@@ -197,7 +197,7 @@ final class DashboardsV1Controller extends BaseV1Controller
 			return $response;
 		}
 
-		throw new NodeWebServerExceptions\JsonApiErrorException(
+		throw new NodeJsonApiExceptions\JsonApiErrorException(
 			StatusCodeInterface::STATUS_UNPROCESSABLE_ENTITY,
 			$this->translator->translate('messages.invalidType.heading'),
 			$this->translator->translate('messages.invalidType.message'),
@@ -213,7 +213,7 @@ final class DashboardsV1Controller extends BaseV1Controller
 	 *
 	 * @return NodeWebServerHttp\Response
 	 *
-	 * @throws NodeWebServerExceptions\IJsonApiException
+	 * @throws NodeJsonApiExceptions\IJsonApiException
 	 * @throws Doctrine\DBAL\ConnectionException
 	 */
 	public function update(
@@ -223,7 +223,7 @@ final class DashboardsV1Controller extends BaseV1Controller
 		$document = $this->createDocument($request);
 
 		if ($request->getAttribute(Router\Router::URL_ITEM_ID) !== $document->getResource()->getIdentifier()->getId()) {
-			throw new NodeWebServerExceptions\JsonApiErrorException(
+			throw new NodeJsonApiExceptions\JsonApiErrorException(
 				StatusCodeInterface::STATUS_BAD_REQUEST,
 				$this->translator->translate('//node.base.messages.invalid.heading'),
 				$this->translator->translate('//node.base.messages.invalid.message')
@@ -240,7 +240,7 @@ final class DashboardsV1Controller extends BaseV1Controller
 				$updateDashboardData = $this->dashboardHydrator->hydrate($document, $dashboard);
 
 			} else {
-				throw new NodeWebServerExceptions\JsonApiErrorException(
+				throw new NodeJsonApiExceptions\JsonApiErrorException(
 					StatusCodeInterface::STATUS_UNPROCESSABLE_ENTITY,
 					$this->translator->translate('messages.invalidType.heading'),
 					$this->translator->translate('messages.invalidType.message'),
@@ -255,7 +255,7 @@ final class DashboardsV1Controller extends BaseV1Controller
 			// Commit all changes into database
 			$this->getOrmConnection()->commit();
 
-		} catch (NodeWebServerExceptions\IJsonApiException $ex) {
+		} catch (NodeJsonApiExceptions\IJsonApiException $ex) {
 			// Revert all changes when error occur
 			$this->getOrmConnection()->rollBack();
 
@@ -273,7 +273,7 @@ final class DashboardsV1Controller extends BaseV1Controller
 				],
 			]);
 
-			throw new NodeWebServerExceptions\JsonApiErrorException(
+			throw new NodeJsonApiExceptions\JsonApiErrorException(
 				StatusCodeInterface::STATUS_UNPROCESSABLE_ENTITY,
 				$this->translator->translate('messages.notUpdated.heading'),
 				$this->translator->translate('messages.notUpdated.message')
@@ -290,7 +290,7 @@ final class DashboardsV1Controller extends BaseV1Controller
 	 *
 	 * @return NodeWebServerHttp\Response
 	 *
-	 * @throws NodeWebServerExceptions\IJsonApiException
+	 * @throws NodeJsonApiExceptions\IJsonApiException
 	 * @throws Doctrine\DBAL\ConnectionException
 	 */
 	public function delete(
@@ -326,7 +326,7 @@ final class DashboardsV1Controller extends BaseV1Controller
 			// Revert all changes when error occur
 			$this->getOrmConnection()->rollBack();
 
-			throw new NodeWebServerExceptions\JsonApiErrorException(
+			throw new NodeJsonApiExceptions\JsonApiErrorException(
 				StatusCodeInterface::STATUS_UNPROCESSABLE_ENTITY,
 				$this->translator->translate('messages.notDeleted.heading'),
 				$this->translator->translate('messages.notDeleted.message')
@@ -345,7 +345,7 @@ final class DashboardsV1Controller extends BaseV1Controller
 	 *
 	 * @return NodeWebServerHttp\Response
 	 *
-	 * @throws NodeWebServerExceptions\IJsonApiException
+	 * @throws NodeJsonApiExceptions\IJsonApiException
 	 */
 	public function readRelationship(
 		Message\ServerRequestInterface $request,
