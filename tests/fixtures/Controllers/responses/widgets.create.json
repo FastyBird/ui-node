@@ -2,7 +2,7 @@
   "data" : {
     "attributes" : {
       "name" : "New analog widget",
-      "params" : [ ]
+      "params" : []
     },
     "id" : "329a7ac2-a309-4c39-9d97-c7ba69efe74f",
     "links" : {
@@ -10,7 +10,7 @@
     },
     "relationships" : {
       "data-sources" : {
-        "data" : [ ],
+        "data" : [],
         "links" : {
           "related" : {
             "href" : "/v1/widgets/329a7ac2-a309-4c39-9d97-c7ba69efe74f/data-sources",

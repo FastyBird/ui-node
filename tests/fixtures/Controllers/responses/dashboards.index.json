@@ -4,7 +4,7 @@
       "attributes" : {
         "comment" : null,
         "name" : "Main dashboard",
-        "params" : [ ],
+        "params" : [],
         "priority" : 0
       },
       "id" : "272379d8-8351-44b6-ad8d-73a0abcb7f9c",
@@ -40,7 +40,7 @@
       "attributes" : {
         "comment" : null,
         "name" : "First floor",
-        "params" : [ ],
+        "params" : [],
         "priority" : 0
       },
       "id" : "ab369e71-ada6-4d1a-a5a8-b6ee5cd58296",

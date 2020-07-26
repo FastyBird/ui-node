@@ -3,7 +3,7 @@
 use Fig\Http\Message\StatusCodeInterface;
 
 return [
-	'create'      	    => [
+	'create'          => [
 		'/v1/widgets',
 		file_get_contents(__DIR__ . '/requests/widgets.create.json'),
 		StatusCodeInterface::STATUS_CREATED,
@@ -21,7 +21,7 @@ return [
 		StatusCodeInterface::STATUS_UNPROCESSABLE_ENTITY,
 		__DIR__ . '/responses/widgets.create.invalidType.json',
 	],
-	'invalidDisplay'     => [
+	'invalidDisplay'  => [
 		'/v1/widgets',
 		file_get_contents(__DIR__ . '/requests/widgets.create.invalidDisplay.json'),
 		StatusCodeInterface::STATUS_UNPROCESSABLE_ENTITY,

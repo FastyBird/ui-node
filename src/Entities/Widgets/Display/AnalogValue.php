@@ -25,5 +25,4 @@ class AnalogValue extends Display implements IAnalogValue
 {
 
 	use Entities\Widgets\Display\Parameters\TPrecision;
-
 }

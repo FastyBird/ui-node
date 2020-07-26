@@ -16,7 +16,7 @@ FastyBird user interface node is an Apache2 licensed distributed microservice, d
 
 ## Requirements
 
-FastyBird user interface node is tested against PHP 7.3 and [ReactPHP http](https://github.com/reactphp/http) 0.8 event-driven, streaming plaintext HTTP server
+FastyBird user interface node is tested against PHP 7.4 and [ReactPHP http](https://github.com/reactphp/http) 0.8 event-driven, streaming plaintext HTTP server
 
 ## Getting started
 
@@ -32,7 +32,7 @@ $ cd path/to/install
 
 Everything required will be then installed in the provided folder `path/to/install`
 
-This microservice is composed from one console command.
+This microservice has one console command.
 
 ##### HTTP server
 
@@ -40,7 +40,7 @@ This microservice is composed from one console command.
 $ vendor/bin/fb-console fb:node:server:start
 ```
 
-This server is listening for incoming http api request messages from clients.
+This command is to start build in web server which is listening for incoming http api request messages from clients and is listening for new data from exchange bus from other microservices. 
 
 ## Install with docker
 
@@ -80,12 +80,14 @@ Configuration could be made via environment variables:
 | | |
 | `FB_NODE_PARAMETER__SERVER_ADDRESS=0.0.0.0` | HTTP server host address |
 | `FB_NODE_PARAMETER__SERVER_PORT=8000` | HTTP server access port |
+| | |
+| `FB_NODE_PARAMETER__SECURITY_SIGNATURE=` | Security token signature string |
 
 > **NOTE:** In case you are not using docker image or you are not able to configure environment variables, you could edit configuration file `./config/default.neon`
 
 ## Initialization
 
-This microservice is using database, so you have to initialise basic database schema. It could be done via shell command:
+This microservice is using database, so database have to be initialise with basic database schema. It could be done via shell command:
 
 ```sh
 $ php vendor/bin/doctrine orm:schema-tool:create
@@ -95,13 +97,13 @@ After this steps, microservice could be started with [server command](#http-serv
 
 ## Feedback
 
-Use the [issue tracker](https://github.com/FastyBird/ui-node/issues) for bugs or [mail](mailto:info@fastybird.com) or [Tweet](https://twitter.com/fastybird) us for any idea that can improve the project.
+Use the [issue tracker](https://github.com/FastyBird/auth-node/issues) for bugs or [mail](mailto:code@fastybird.com) or [Tweet](https://twitter.com/fastybird) us for any idea that can improve the project.
 
 Thank you for testing, reporting and contributing.
 
 ## Changelog
 
-For release info check [release page](https://github.com/FastyBird/ui-node/releases)
+For release info check [release page](https://github.com/FastyBird/auth-node/releases)
 
 ## Maintainers
 

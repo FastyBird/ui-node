@@ -3,7 +3,7 @@
     {
       "attributes" : {
         "name" : "Room temperature",
-        "params" : [ ]
+        "params" : []
       },
       "id" : "15553443-4564-454d-af04-0dfeef08aa96",
       "links" : {
@@ -54,7 +54,7 @@
     {
       "attributes" : {
         "name" : "Ambient light",
-        "params" : [ ]
+        "params" : []
       },
       "id" : "1d600901-54e7-43ee-8f5d-a9e22663ddd7",
       "links" : {
@@ -105,7 +105,7 @@
     {
       "attributes" : {
         "name" : "TV light",
-        "params" : [ ]
+        "params" : []
       },
       "id" : "5626e7a1-c42c-4a31-9b5d-848e3cf0e82a",
       "links" : {
@@ -156,7 +156,7 @@
     {
       "attributes" : {
         "name" : "Main light",
-        "params" : [ ]
+        "params" : []
       },
       "id" : "9a914732-98dc-47f6-bfd1-9d81ca9f8cb6",
       "links" : {

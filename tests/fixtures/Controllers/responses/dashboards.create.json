@@ -3,7 +3,7 @@
     "attributes" : {
       "comment" : null,
       "name" : "Second floor",
-      "params" : [ ],
+      "params" : [],
       "priority" : 0
     },
     "id" : "7ef34899-74b5-49d3-bf7a-ea7ad45dea38",
@@ -12,7 +12,7 @@
     },
     "relationships" : {
       "groups" : {
-        "data" : [ ],
+        "data" : [],
         "links" : {
           "related" : {
             "href" : "/v1/dashboards/7ef34899-74b5-49d3-bf7a-ea7ad45dea38/groups",
