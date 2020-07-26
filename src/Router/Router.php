@@ -4,7 +4,7 @@
  * RouterFactory.php
  *
  * @license        More in license.md
- * @copyright      https://www.fastybird.com
+ * @copyright      https://fastybird.com
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
  * @package        FastyBird:UINode!
  * @subpackage     Router
@@ -15,6 +15,7 @@
 
 namespace FastyBird\UINode\Router;
 
+use FastyBird\NodeAuth\Middleware as NodeAuthMiddleware;
 use FastyBird\UINode\Controllers;
 use IPub\SlimRouter\Routing;
 use Psr\Http\Message\ResponseFactoryInterface;
@@ -52,12 +53,16 @@ class Router extends Routing\Router
 	/** @var Controllers\DataSourcesV1Controller */
 	private $dataSourceV1Controller;
 
+	/** @var NodeAuthMiddleware\Route\AccessMiddleware */
+	private $accessControlMiddleware;
+
 	public function __construct(
 		Controllers\DashboardsV1Controller $dashboardsV1Controller,
 		Controllers\GroupsV1Controller $groupsV1Controller,
 		Controllers\WidgetsV1Controller $widgetsV1Controller,
 		Controllers\DisplayV1Controller $displayV1Controller,
 		Controllers\DataSourcesV1Controller $dataSourceV1Controller,
+		NodeAuthMiddleware\Route\AccessMiddleware $accessControlMiddleware,
 		?ResponseFactoryInterface $responseFactory = null
 	) {
 		parent::__construct($responseFactory, null);
@@ -67,6 +72,8 @@ class Router extends Routing\Router
 		$this->widgetsV1Controller = $widgetsV1Controller;
 		$this->displayV1Controller = $displayV1Controller;
 		$this->dataSourceV1Controller = $dataSourceV1Controller;
+
+		$this->accessControlMiddleware = $accessControlMiddleware;
 	}
 
 	/**
@@ -171,7 +178,8 @@ class Router extends Routing\Router
 					$route->setName('widget.data-source.relationship');
 				});
 			});
-		});
+		})
+			->addMiddleware($this->accessControlMiddleware);
 	}
 
 }

@@ -6,14 +6,14 @@
  * @license        More in license.md
  * @copyright      https://fastybird.com
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
- * @package        FastyBird:DevicesNode!
+ * @package        FastyBird:UINode!
  * @subpackage     Middleware
  * @since          0.1.0
  *
  * @date           24.07.20
  */
 
-namespace FastyBird\DevicesNode\Middleware;
+namespace FastyBird\UINode\Middleware;
 
 use Contributte\Translation;
 use FastyBird\NodeAuth\Exceptions as NodeAuthExceptions;
@@ -27,7 +27,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 /**
  * Access check middleware
  *
- * @package        FastyBird:DevicesNode!
+ * @package        FastyBird:UINode!
  * @subpackage     Middleware
  *
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>

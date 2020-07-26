@@ -4,7 +4,7 @@
  * DataSources.php
  *
  * @license        More in license.md
- * @copyright      https://www.fastybird.com
+ * @copyright      https://fastybird.com
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
  * @package        FastyBird:UINode!
  * @subpackage     Entities
@@ -43,9 +43,10 @@ use Throwable;
  * })
  * @ORM\MappedSuperclass
  */
-abstract class DataSource extends NodeDatabaseEntities\Entity implements IDataSource
+abstract class DataSource implements IDataSource
 {
 
+	use NodeDatabaseEntities\TEntity;
 	use NodeDatabaseEntities\TEntityParams;
 	use DoctrineTimestampable\Entities\TEntityCreated;
 	use DoctrineTimestampable\Entities\TEntityUpdated;

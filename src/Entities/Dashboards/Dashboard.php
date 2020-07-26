@@ -4,7 +4,7 @@
  * IDashboard.php
  *
  * @license        More in license.md
- * @copyright      https://www.fastybird.com
+ * @copyright      https://fastybird.com
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
  * @package        FastyBird:UINode!
  * @subpackage     Entities
@@ -38,9 +38,10 @@ use Throwable;
  *     }
  * )
  */
-class Dashboard extends NodeDatabaseEntities\Entity implements IDashboard
+class Dashboard implements IDashboard
 {
 
+	use NodeDatabaseEntities\TEntity;
 	use NodeDatabaseEntities\TEntityParams;
 	use DoctrineTimestampable\Entities\TEntityCreated;
 	use DoctrineTimestampable\Entities\TEntityUpdated;

@@ -6,14 +6,14 @@
  * @license        More in license.md
  * @copyright      https://fastybird.com
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
- * @package        FastyBird:DevicesNode!
+ * @package        FastyBird:UINode!
  * @subpackage     Events
  * @since          0.1.0
  *
  * @date           26.07.20
  */
 
-namespace FastyBird\DevicesNode\Events;
+namespace FastyBird\UINode\Events;
 
 use FastyBird\NodeExchange;
 use Nette;
@@ -22,7 +22,7 @@ use Throwable;
 /**
  * Http server before start handler
  *
- * @package         FastyBird:DevicesNode!
+ * @package         FastyBird:UINode!
  * @subpackage      Events
  *
  * @author          Adam Kadlec <adam.kadlec@fastybird.com>
