@@ -19,9 +19,13 @@ parameters:
 		username: guest
 		password: guest
 
+	ws:
+		port: 8080
+
 	server:
 		address: 0.0.0.0
 		port: 8000
 
 	security:
+		issuer: com.fastybird.auth-node
 		signature: 'g3xHbkELpMD9LRqW4WmJkHL7kz2bdNYAQJyEuFVzR3k='

@@ -1,0 +1,96 @@
+<?php declare(strict_types = 1);
+
+use FastyBird\UINode;
+
+return [
+	'create' => [
+		[
+			'id'        => 'b41efd22-42e0-4e30-aab4-de471741cd30',
+			'device'    => 'device-name',
+			'property'  => 'property-name',
+			'name'      => null,
+			'settable'  => true,
+			'queryable' => true,
+			'datatype'  => null,
+			'unit'      => null,
+			'format'    => null,
+		],
+		[
+			'routing_key' => UINode\Constants::RABBIT_MQ_DEVICES_PROPERTY_CREATED_ENTITY_ROUTING_KEY,
+			'origin'      => UINode\Constants::NODE_DEVICES_ORIGIN,
+			'data'        => [
+				'id'        => 'b41efd22-42e0-4e30-aab4-de471741cd30',
+				'device'    => 'device-name',
+				'property'  => 'property-name',
+				'name'      => null,
+				'settable'  => true,
+				'queryable' => true,
+				'datatype'  => null,
+				'unit'      => null,
+				'format'    => null,
+			],
+		],
+		UINode\Constants::RABBIT_MQ_DEVICES_PROPERTY_CREATED_ENTITY_ROUTING_KEY,
+		UINode\Constants::NODE_DEVICES_ORIGIN,
+	],
+	'update' => [
+		[
+			'id'        => 'b41efd22-42e0-4e30-aab4-de471741cd30',
+			'device'    => 'device-name',
+			'property'  => 'property-name',
+			'name'      => null,
+			'settable'  => true,
+			'queryable' => true,
+			'datatype'  => null,
+			'unit'      => null,
+			'format'    => null,
+		],
+		[
+			'routing_key' => UINode\Constants::RABBIT_MQ_DEVICES_PROPERTY_UPDATED_ENTITY_ROUTING_KEY,
+			'origin'      => UINode\Constants::NODE_DEVICES_ORIGIN,
+			'data'        => [
+				'id'        => 'b41efd22-42e0-4e30-aab4-de471741cd30',
+				'device'    => 'device-name',
+				'property'  => 'property-name',
+				'name'      => null,
+				'settable'  => true,
+				'queryable' => true,
+				'datatype'  => null,
+				'unit'      => null,
+				'format'    => null,
+			],
+		],
+		UINode\Constants::RABBIT_MQ_DEVICES_PROPERTY_UPDATED_ENTITY_ROUTING_KEY,
+		UINode\Constants::NODE_DEVICES_ORIGIN,
+	],
+	'delete' => [
+		[
+			'id'        => 'b41efd22-42e0-4e30-aab4-de471741cd30',
+			'device'    => 'device-name',
+			'property'  => 'property-name',
+			'name'      => null,
+			'settable'  => true,
+			'queryable' => true,
+			'datatype'  => null,
+			'unit'      => null,
+			'format'    => null,
+		],
+		[
+			'routing_key' => UINode\Constants::RABBIT_MQ_DEVICES_PROPERTY_DELETED_ENTITY_ROUTING_KEY,
+			'origin'      => UINode\Constants::NODE_DEVICES_ORIGIN,
+			'data'        => [
+				'id'        => 'b41efd22-42e0-4e30-aab4-de471741cd30',
+				'device'    => 'device-name',
+				'property'  => 'property-name',
+				'name'      => null,
+				'settable'  => true,
+				'queryable' => true,
+				'datatype'  => null,
+				'unit'      => null,
+				'format'    => null,
+			],
+		],
+		UINode\Constants::RABBIT_MQ_DEVICES_PROPERTY_DELETED_ENTITY_ROUTING_KEY,
+		UINode\Constants::NODE_DEVICES_ORIGIN,
+	],
+];
