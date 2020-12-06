@@ -20,7 +20,7 @@ parameters:
 		password: guest
 
 	ws:
-		port: 8080
+		port: 9878
 
 	server:
 		address: 0.0.0.0
