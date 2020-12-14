@@ -15,7 +15,7 @@
 ##############################
 
 parameters:
-	origin: com.fastybird.ui-node
+	origin: com.fastybird.ui-module
 
 	rabbitmq:
 		queueName: fb.ui.node.exchange

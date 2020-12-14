@@ -105,8 +105,8 @@ final class Constants
 	 * Microservices origins
 	 */
 
-	public const NODE_DEVICES_ORIGIN = 'com.fastybird.devices-node';
-	public const NODE_AUTH_ORIGIN = 'com.fastybird.auth-node';
-	public const NODE_TRIGGERS_ORIGIN = 'com.fastybird.triggers-node';
+	public const NODE_DEVICES_ORIGIN = 'com.fastybird.devices-module';
+	public const NODE_AUTH_ORIGIN = 'com.fastybird.auth-module';
+	public const NODE_TRIGGERS_ORIGIN = 'com.fastybird.triggers-module';
 
 }
