@@ -4,7 +4,7 @@
  * MessageHandler.php
  *
  * @license        More in license.md
- * @copyright      https://fastybird.com
+ * @copyright      https://www.fastybird.com
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
  * @package        FastyBird:UINode!
  * @subpackage     Consumers
@@ -36,14 +36,14 @@ abstract class MessageHandler implements RabbitMqPluginConsumers\IMessageHandler
 
 	use Nette\SmartObject;
 
-	/** @var Log\LoggerInterface */
-	protected $logger;
-
 	/** @var ModulesMetadataLoaders\ISchemaLoader */
-	private $schemaLoader;
+	private ModulesMetadataLoaders\ISchemaLoader $schemaLoader;
 
 	/** @var ModulesMetadataSchemas\IValidator */
-	private $validator;
+	private ModulesMetadataSchemas\IValidator $validator;
+
+	/** @var Log\LoggerInterface */
+	protected Log\LoggerInterface $logger;
 
 	public function __construct(
 		ModulesMetadataLoaders\ISchemaLoader $schemaLoader,

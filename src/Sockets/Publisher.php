@@ -4,7 +4,7 @@
  * Publisher.php
  *
  * @license        More in license.md
- * @copyright      https://fastybird.com
+ * @copyright      https://www.fastybird.com
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
  * @package        FastyBird:UINode!
  * @subpackage     Sockets
@@ -30,7 +30,7 @@ final class Publisher implements UIModuleSockets\IPublisher
 {
 
 	/** @var RabbitMqPluginPublishers\IRabbitMqPublisher */
-	private $rabbitMqPublisher;
+	private RabbitMqPluginPublishers\IRabbitMqPublisher $rabbitMqPublisher;
 
 	public function __construct(
 		RabbitMqPluginPublishers\IRabbitMqPublisher $rabbitMqPublisher

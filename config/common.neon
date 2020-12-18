@@ -174,7 +174,7 @@ decorator:
 	FastyBird\WebServer\Commands\HttpServerCommand:
 		setup:
 			- '$onBeforeServerStart[]' = @FastyBird\UINode\Events\ServerBeforeStartHandler
-			- '$onServerStart[]' = @FastyBird\UINode\Events\ServerStartHandler
+			- '$onAfterServerStart[]' = @FastyBird\UINode\Events\ServerAfterStartHandler
 
 	FastyBird\RabbitMqPlugin\Exchange:
 		setup:
@@ -202,7 +202,7 @@ services:
 
 	- {factory: FastyBird\UINode\Events\ServerBeforeStartHandler}
 
-	- {factory: FastyBird\UINode\Events\ServerStartHandler}
+	- {factory: FastyBird\UINode\Events\ServerAfterStartHandler}
 
 	# Sockets services
 	##################

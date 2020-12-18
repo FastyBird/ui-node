@@ -1,10 +1,10 @@
 <?php declare(strict_types = 1);
 
 /**
- * ServerStartHandler.php
+ * ServerAfterStartHandler.php
  *
  * @license        More in license.md
- * @copyright      https://fastybird.com
+ * @copyright      https://www.fastybird.com
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
  * @package        FastyBird:UINode!
  * @subpackage     Events
@@ -30,22 +30,22 @@ use Throwable;
  *
  * @author          Adam Kadlec <adam.kadlec@fastybird.com>
  */
-class ServerStartHandler
+class ServerAfterStartHandler
 {
 
 	use Nette\SmartObject;
 
 	/** @var WebSockets\Server\Handlers */
-	private $handlers;
+	private WebSockets\Server\Handlers $handlers;
 
 	/** @var EventLoop\LoopInterface */
-	private $loop;
+	private EventLoop\LoopInterface $loop;
 
 	/** @var WebSockets\Server\Configuration */
-	private $configuration;
+	private WebSockets\Server\Configuration $configuration;
 
 	/** @var Log\LoggerInterface */
-	private $logger;
+	private Log\LoggerInterface $logger;
 
 	public function __construct(
 		WebSockets\Server\Handlers $handlers,

@@ -4,7 +4,7 @@
  * AuthNodeMessageHandler.php
  *
  * @license        More in license.md
- * @copyright      https://fastybird.com
+ * @copyright      https://www.fastybird.com
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
  * @package        FastyBird:UINode!
  * @subpackage     Consumers
@@ -37,7 +37,7 @@ final class AuthNodeMessageHandler extends MessageHandler
 	use TDataTransformer;
 
 	/** @var UIModuleSockets\ISender */
-	private $sender;
+	private UIModuleSockets\ISender $sender;
 
 	public function __construct(
 		UIModuleSockets\ISender $sender,

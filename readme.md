@@ -130,4 +130,4 @@ For release info check [release page](https://github.com/FastyBird/ui-node/relea
 </table>
 
 ***
-Homepage [http://fastybird.com](http://fastybird.com) and repository [http://github.com/fastybird/ui-node](http://github.com/fastybird/ui-node).
+Homepage [https://www.fastybird.com](https://www.fastybird.com) and repository [http://github.com/fastybird/ui-node](http://github.com/fastybird/ui-node).
