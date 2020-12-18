@@ -31,9 +31,9 @@ final class ServicesTest extends BaseTestCase
 
 		Assert::notNull($container->getByType(Commands\InitializeCommand::class));
 
-		Assert::notNull($container->getByType(Consumers\AuthNodeMessageHandler::class));
-		Assert::notNull($container->getByType(Consumers\DevicesNodeMessageHandler::class));
-		Assert::notNull($container->getByType(Consumers\TriggersNodeMessageHandler::class));
+		Assert::notNull($container->getByType(Consumers\AuthModuleMessageHandler::class));
+		Assert::notNull($container->getByType(Consumers\DevicesModuleMessageHandler::class));
+		Assert::notNull($container->getByType(Consumers\TriggersModuleMessageHandler::class));
 
 		Assert::notNull($container->getByType(Events\AfterConsumeHandler::class));
 		Assert::notNull($container->getByType(Events\ServerBeforeStartHandler::class));

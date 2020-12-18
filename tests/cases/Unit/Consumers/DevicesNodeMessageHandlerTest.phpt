@@ -2,10 +2,10 @@
 
 namespace Tests\Cases;
 
+use FastyBird\ModulesMetadata;
 use FastyBird\ModulesMetadata\Loaders as ModulesMetadataLoaders;
 use FastyBird\ModulesMetadata\Schemas as ModulesMetadataSchemas;
 use FastyBird\UIModule\Sockets as UIModuleSockets;
-use FastyBird\UINode;
 use FastyBird\UINode\Consumers;
 use Mockery;
 use Nette\Utils;
@@ -53,7 +53,7 @@ final class DevicesNodeMessageHandlerTest extends BaseMockeryTestCase
 			->shouldReceive('info')
 			->with('[CONSUMER] Successfully consumed entity message', [
 				'routing_key' => $routingKey,
-				'origin'      => UINode\Constants::NODE_DEVICES_ORIGIN,
+				'origin'      => ModulesMetadata\Constants::MODULE_DEVICES_ORIGIN,
 				'data'        => $data,
 			])
 			->times(1);
@@ -78,7 +78,7 @@ final class DevicesNodeMessageHandlerTest extends BaseMockeryTestCase
 			->times(1)
 			->getMock();
 
-		$consumer = new Consumers\DevicesNodeMessageHandler(
+		$consumer = new Consumers\DevicesModuleMessageHandler(
 			$sender,
 			$schemaLoader,
 			$validator,
@@ -118,7 +118,7 @@ final class DevicesNodeMessageHandlerTest extends BaseMockeryTestCase
 			->shouldReceive('info')
 			->with('[CONSUMER] Successfully consumed entity message', [
 				'routing_key' => $routingKey,
-				'origin'      => UINode\Constants::NODE_DEVICES_ORIGIN,
+				'origin'      => ModulesMetadata\Constants::MODULE_DEVICES_ORIGIN,
 				'data'        => $data,
 			])
 			->times(1);
@@ -143,7 +143,7 @@ final class DevicesNodeMessageHandlerTest extends BaseMockeryTestCase
 			->times(1)
 			->getMock();
 
-		$consumer = new Consumers\DevicesNodeMessageHandler(
+		$consumer = new Consumers\DevicesModuleMessageHandler(
 			$sender,
 			$schemaLoader,
 			$validator,
@@ -183,7 +183,7 @@ final class DevicesNodeMessageHandlerTest extends BaseMockeryTestCase
 			->shouldReceive('info')
 			->with('[CONSUMER] Successfully consumed entity message', [
 				'routing_key' => $routingKey,
-				'origin'      => UINode\Constants::NODE_DEVICES_ORIGIN,
+				'origin'      => ModulesMetadata\Constants::MODULE_DEVICES_ORIGIN,
 				'data'        => $data,
 			])
 			->times(1);
@@ -208,7 +208,7 @@ final class DevicesNodeMessageHandlerTest extends BaseMockeryTestCase
 			->times(1)
 			->getMock();
 
-		$consumer = new Consumers\DevicesNodeMessageHandler(
+		$consumer = new Consumers\DevicesModuleMessageHandler(
 			$sender,
 			$schemaLoader,
 			$validator,
@@ -248,7 +248,7 @@ final class DevicesNodeMessageHandlerTest extends BaseMockeryTestCase
 			->shouldReceive('info')
 			->with('[CONSUMER] Successfully consumed entity message', [
 				'routing_key' => $routingKey,
-				'origin'      => UINode\Constants::NODE_DEVICES_ORIGIN,
+				'origin'      => ModulesMetadata\Constants::MODULE_DEVICES_ORIGIN,
 				'data'        => $data,
 			])
 			->times(1);
@@ -273,7 +273,7 @@ final class DevicesNodeMessageHandlerTest extends BaseMockeryTestCase
 			->times(1)
 			->getMock();
 
-		$consumer = new Consumers\DevicesNodeMessageHandler(
+		$consumer = new Consumers\DevicesModuleMessageHandler(
 			$sender,
 			$schemaLoader,
 			$validator,

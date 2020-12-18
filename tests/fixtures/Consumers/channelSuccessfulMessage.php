@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-use FastyBird\UINode;
+use FastyBird\ModulesMetadata;
 
 return [
 	'create' => [
@@ -14,8 +14,8 @@ return [
 			'control' => [],
 		],
 		[
-			'routing_key' => UINode\Constants::RABBIT_MQ_CHANNELS_CREATED_ENTITY_ROUTING_KEY,
-			'origin'      => UINode\Constants::NODE_DEVICES_ORIGIN,
+			'routing_key' => ModulesMetadata\Constants::MESSAGE_BUS_CHANNELS_CREATED_ENTITY_ROUTING_KEY,
+			'origin'      => ModulesMetadata\Constants::MODULE_DEVICES_ORIGIN,
 			'data'        => [
 				'id'      => 'd627e987-a9aa-4f23-90c3-4fc38ae81ee1',
 				'device'  => 'device-name',
@@ -26,8 +26,8 @@ return [
 				'control' => [],
 			],
 		],
-		UINode\Constants::RABBIT_MQ_CHANNELS_CREATED_ENTITY_ROUTING_KEY,
-		UINode\Constants::NODE_DEVICES_ORIGIN,
+		ModulesMetadata\Constants::MESSAGE_BUS_CHANNELS_CREATED_ENTITY_ROUTING_KEY,
+		ModulesMetadata\Constants::MODULE_DEVICES_ORIGIN,
 	],
 	'update' => [
 		[
@@ -40,8 +40,8 @@ return [
 			'control' => [],
 		],
 		[
-			'routing_key' => UINode\Constants::RABBIT_MQ_CHANNELS_UPDATED_ENTITY_ROUTING_KEY,
-			'origin'      => UINode\Constants::NODE_DEVICES_ORIGIN,
+			'routing_key' => ModulesMetadata\Constants::MESSAGE_BUS_CHANNELS_UPDATED_ENTITY_ROUTING_KEY,
+			'origin'      => ModulesMetadata\Constants::MODULE_DEVICES_ORIGIN,
 			'data'        => [
 				'id'      => 'd627e987-a9aa-4f23-90c3-4fc38ae81ee1',
 				'device'  => 'device-name',
@@ -52,8 +52,8 @@ return [
 				'control' => [],
 			],
 		],
-		UINode\Constants::RABBIT_MQ_CHANNELS_UPDATED_ENTITY_ROUTING_KEY,
-		UINode\Constants::NODE_DEVICES_ORIGIN,
+		ModulesMetadata\Constants::MESSAGE_BUS_CHANNELS_UPDATED_ENTITY_ROUTING_KEY,
+		ModulesMetadata\Constants::MODULE_DEVICES_ORIGIN,
 	],
 	'delete' => [
 		[
@@ -66,8 +66,8 @@ return [
 			'control' => [],
 		],
 		[
-			'routing_key' => UINode\Constants::RABBIT_MQ_CHANNELS_DELETED_ENTITY_ROUTING_KEY,
-			'origin'      => UINode\Constants::NODE_DEVICES_ORIGIN,
+			'routing_key' => ModulesMetadata\Constants::MESSAGE_BUS_CHANNELS_DELETED_ENTITY_ROUTING_KEY,
+			'origin'      => ModulesMetadata\Constants::MODULE_DEVICES_ORIGIN,
 			'data'        => [
 				'id'      => 'd627e987-a9aa-4f23-90c3-4fc38ae81ee1',
 				'device'  => 'device-name',
@@ -78,7 +78,7 @@ return [
 				'control' => [],
 			],
 		],
-		UINode\Constants::RABBIT_MQ_CHANNELS_DELETED_ENTITY_ROUTING_KEY,
-		UINode\Constants::NODE_DEVICES_ORIGIN,
+		ModulesMetadata\Constants::MESSAGE_BUS_CHANNELS_DELETED_ENTITY_ROUTING_KEY,
+		ModulesMetadata\Constants::MODULE_DEVICES_ORIGIN,
 	],
 ];

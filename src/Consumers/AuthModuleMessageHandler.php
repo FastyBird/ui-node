@@ -1,7 +1,7 @@
 <?php declare(strict_types = 1);
 
 /**
- * AuthNodeMessageHandler.php
+ * AuthModuleMessageHandler.php
  *
  * @license        More in license.md
  * @copyright      https://www.fastybird.com
@@ -19,7 +19,6 @@ use FastyBird\ModulesMetadata;
 use FastyBird\ModulesMetadata\Loaders as ModulesMetadataLoaders;
 use FastyBird\ModulesMetadata\Schemas as ModulesMetadataSchemas;
 use FastyBird\UIModule\Sockets as UIModuleSockets;
-use FastyBird\UINode;
 use FastyBird\UINode\Exceptions;
 use Psr\Log;
 
@@ -31,7 +30,7 @@ use Psr\Log;
  *
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
  */
-final class AuthNodeMessageHandler extends MessageHandler
+final class AuthModuleMessageHandler extends MessageHandler
 {
 
 	use TDataTransformer;
@@ -66,22 +65,22 @@ final class AuthNodeMessageHandler extends MessageHandler
 
 		switch ($routingKey) {
 			// Accounts
-			case UINode\Constants::RABBIT_MQ_ACCOUNTS_CREATED_ENTITY_ROUTING_KEY:
-			case UINode\Constants::RABBIT_MQ_ACCOUNTS_UPDATED_ENTITY_ROUTING_KEY:
-			case UINode\Constants::RABBIT_MQ_ACCOUNTS_DELETED_ENTITY_ROUTING_KEY:
+			case ModulesMetadata\Constants::MESSAGE_BUS_ACCOUNTS_CREATED_ENTITY_ROUTING_KEY:
+			case ModulesMetadata\Constants::MESSAGE_BUS_ACCOUNTS_UPDATED_ENTITY_ROUTING_KEY:
+			case ModulesMetadata\Constants::MESSAGE_BUS_ACCOUNTS_DELETED_ENTITY_ROUTING_KEY:
 				// Emails
-			case UINode\Constants::RABBIT_MQ_EMAILS_CREATED_ENTITY_ROUTING_KEY:
-			case UINode\Constants::RABBIT_MQ_EMAILS_UPDATED_ENTITY_ROUTING_KEY:
-			case UINode\Constants::RABBIT_MQ_EMAILS_DELETED_ENTITY_ROUTING_KEY:
+			case ModulesMetadata\Constants::MESSAGE_BUS_EMAILS_CREATED_ENTITY_ROUTING_KEY:
+			case ModulesMetadata\Constants::MESSAGE_BUS_EMAILS_UPDATED_ENTITY_ROUTING_KEY:
+			case ModulesMetadata\Constants::MESSAGE_BUS_EMAILS_DELETED_ENTITY_ROUTING_KEY:
 				// Identities
-			case UINode\Constants::RABBIT_MQ_IDENTITIES_CREATED_ENTITY_ROUTING_KEY:
-			case UINode\Constants::RABBIT_MQ_IDENTITIES_UPDATED_ENTITY_ROUTING_KEY:
-			case UINode\Constants::RABBIT_MQ_IDENTITIES_DELETED_ENTITY_ROUTING_KEY:
+			case ModulesMetadata\Constants::MESSAGE_BUS_IDENTITIES_CREATED_ENTITY_ROUTING_KEY:
+			case ModulesMetadata\Constants::MESSAGE_BUS_IDENTITIES_UPDATED_ENTITY_ROUTING_KEY:
+			case ModulesMetadata\Constants::MESSAGE_BUS_IDENTITIES_DELETED_ENTITY_ROUTING_KEY:
 				$result = $this->sender->sendEntity(
 					'Exchange:',
 					[
 						'routing_key' => $routingKey,
-						'origin'      => UINode\Constants::NODE_AUTH_ORIGIN,
+						'origin'      => ModulesMetadata\Constants::MODULE_AUTH_ORIGIN,
 						'data'        => $this->dataToArray($message),
 					]
 				);
@@ -94,7 +93,7 @@ final class AuthNodeMessageHandler extends MessageHandler
 		if ($result) {
 			$this->logger->info('[CONSUMER] Successfully consumed entity message', [
 				'routing_key' => $routingKey,
-				'origin'      => UINode\Constants::NODE_AUTH_ORIGIN,
+				'origin'      => ModulesMetadata\Constants::MODULE_AUTH_ORIGIN,
 				'data'        => $this->dataToArray($message),
 			]);
 		}
@@ -107,21 +106,21 @@ final class AuthNodeMessageHandler extends MessageHandler
 	 */
 	protected function getSchemaFile(string $routingKey, string $origin): ?string
 	{
-		if ($origin === UINode\Constants::NODE_AUTH_ORIGIN) {
+		if ($origin === ModulesMetadata\Constants::MODULE_AUTH_ORIGIN) {
 			switch ($routingKey) {
-				case UINode\Constants::RABBIT_MQ_ACCOUNTS_CREATED_ENTITY_ROUTING_KEY:
-				case UINode\Constants::RABBIT_MQ_ACCOUNTS_UPDATED_ENTITY_ROUTING_KEY:
-				case UINode\Constants::RABBIT_MQ_ACCOUNTS_DELETED_ENTITY_ROUTING_KEY:
+				case ModulesMetadata\Constants::MESSAGE_BUS_ACCOUNTS_CREATED_ENTITY_ROUTING_KEY:
+				case ModulesMetadata\Constants::MESSAGE_BUS_ACCOUNTS_UPDATED_ENTITY_ROUTING_KEY:
+				case ModulesMetadata\Constants::MESSAGE_BUS_ACCOUNTS_DELETED_ENTITY_ROUTING_KEY:
 					return ModulesMetadata\Constants::RESOURCES_FOLDER . '/schemas/auth-module/entity.account.json';
 
-				case UINode\Constants::RABBIT_MQ_EMAILS_CREATED_ENTITY_ROUTING_KEY:
-				case UINode\Constants::RABBIT_MQ_EMAILS_UPDATED_ENTITY_ROUTING_KEY:
-				case UINode\Constants::RABBIT_MQ_EMAILS_DELETED_ENTITY_ROUTING_KEY:
+				case ModulesMetadata\Constants::MESSAGE_BUS_EMAILS_CREATED_ENTITY_ROUTING_KEY:
+				case ModulesMetadata\Constants::MESSAGE_BUS_EMAILS_UPDATED_ENTITY_ROUTING_KEY:
+				case ModulesMetadata\Constants::MESSAGE_BUS_EMAILS_DELETED_ENTITY_ROUTING_KEY:
 					return ModulesMetadata\Constants::RESOURCES_FOLDER . '/schemas/auth-module/entity.email.json';
 
-				case UINode\Constants::RABBIT_MQ_IDENTITIES_CREATED_ENTITY_ROUTING_KEY:
-				case UINode\Constants::RABBIT_MQ_IDENTITIES_UPDATED_ENTITY_ROUTING_KEY:
-				case UINode\Constants::RABBIT_MQ_IDENTITIES_DELETED_ENTITY_ROUTING_KEY:
+				case ModulesMetadata\Constants::MESSAGE_BUS_IDENTITIES_CREATED_ENTITY_ROUTING_KEY:
+				case ModulesMetadata\Constants::MESSAGE_BUS_IDENTITIES_UPDATED_ENTITY_ROUTING_KEY:
+				case ModulesMetadata\Constants::MESSAGE_BUS_IDENTITIES_DELETED_ENTITY_ROUTING_KEY:
 					return ModulesMetadata\Constants::RESOURCES_FOLDER . '/schemas/auth-module/entity.identity.json';
 			}
 		}

@@ -20,15 +20,15 @@ parameters:
 	rabbitmq:
 		queueName: fb.ui.node.exchange
 		routing:
-			- fb.bus.node.entity.*.device		# Entities
-			- fb.bus.node.entity.*.device.*		# Entities
-			- fb.bus.node.entity.*.channel		# Entities
-			- fb.bus.node.entity.*.channel.*	# Entities
-			- fb.bus.node.entity.*.account		# Entities
-			- fb.bus.node.entity.*.email		# Entities
-			- fb.bus.node.entity.*.identity		# Entities
-			- fb.bus.node.entity.*.trigger		# Entities
-			- fb.bus.node.entity.*.trigger.*	# Entities
+			- fb.bus.entity.*.device	# Entities
+			- fb.bus.entity.*.device.*	# Entities
+			- fb.bus.entity.*.channel	# Entities
+			- fb.bus.entity.*.channel.*	# Entities
+			- fb.bus.entity.*.account	# Entities
+			- fb.bus.entity.*.email		# Entities
+			- fb.bus.entity.*.identity	# Entities
+			- fb.bus.entity.*.trigger	# Entities
+			- fb.bus.entity.*.trigger.*	# Entities
 
 #########################
 # Used Nette extensions #
@@ -189,11 +189,11 @@ services:
 	# Message bus messages handlers
 	###############################
 
-	- {factory: FastyBird\UINode\Consumers\AuthNodeMessageHandler}
+	- {factory: FastyBird\UINode\Consumers\AuthModuleMessageHandler}
 
-	- {factory: FastyBird\UINode\Consumers\DevicesNodeMessageHandler}
+	- {factory: FastyBird\UINode\Consumers\DevicesModuleMessageHandler}
 
-	- {factory: FastyBird\UINode\Consumers\TriggersNodeMessageHandler}
+	- {factory: FastyBird\UINode\Consumers\TriggersModuleMessageHandler}
 
 	# Node events
 	#############

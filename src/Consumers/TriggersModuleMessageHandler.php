@@ -1,7 +1,7 @@
 <?php declare(strict_types = 1);
 
 /**
- * TriggersNodeMessageHandler.php
+ * TriggersModuleMessageHandler.php
  *
  * @license        More in license.md
  * @copyright      https://www.fastybird.com
@@ -19,7 +19,6 @@ use FastyBird\ModulesMetadata;
 use FastyBird\ModulesMetadata\Loaders as ModulesMetadataLoaders;
 use FastyBird\ModulesMetadata\Schemas as ModulesMetadataSchemas;
 use FastyBird\UIModule\Sockets as UIModuleSockets;
-use FastyBird\UINode;
 use FastyBird\UINode\Exceptions;
 use Psr\Log;
 
@@ -31,7 +30,7 @@ use Psr\Log;
  *
  * @author         Adam Kadlec <adam.kadlec@fastybird.com>
  */
-final class TriggersNodeMessageHandler extends MessageHandler
+final class TriggersModuleMessageHandler extends MessageHandler
 {
 
 	use TDataTransformer;
@@ -66,26 +65,26 @@ final class TriggersNodeMessageHandler extends MessageHandler
 
 		switch ($routingKey) {
 			// Triggers
-			case UINode\Constants::RABBIT_MQ_TRIGGERS_CREATED_ENTITY_ROUTING_KEY:
-			case UINode\Constants::RABBIT_MQ_TRIGGERS_UPDATED_ENTITY_ROUTING_KEY:
-			case UINode\Constants::RABBIT_MQ_TRIGGERS_DELETED_ENTITY_ROUTING_KEY:
+			case ModulesMetadata\Constants::MESSAGE_BUS_TRIGGERS_CREATED_ENTITY_ROUTING_KEY:
+			case ModulesMetadata\Constants::MESSAGE_BUS_TRIGGERS_UPDATED_ENTITY_ROUTING_KEY:
+			case ModulesMetadata\Constants::MESSAGE_BUS_TRIGGERS_DELETED_ENTITY_ROUTING_KEY:
 				// Actions
-			case UINode\Constants::RABBIT_MQ_TRIGGERS_ACTIONS_CREATED_ENTITY_ROUTING_KEY:
-			case UINode\Constants::RABBIT_MQ_TRIGGERS_ACTIONS_UPDATED_ENTITY_ROUTING_KEY:
-			case UINode\Constants::RABBIT_MQ_TRIGGERS_ACTIONS_DELETED_ENTITY_ROUTING_KEY:
+			case ModulesMetadata\Constants::MESSAGE_BUS_TRIGGERS_ACTIONS_CREATED_ENTITY_ROUTING_KEY:
+			case ModulesMetadata\Constants::MESSAGE_BUS_TRIGGERS_ACTIONS_UPDATED_ENTITY_ROUTING_KEY:
+			case ModulesMetadata\Constants::MESSAGE_BUS_TRIGGERS_ACTIONS_DELETED_ENTITY_ROUTING_KEY:
 				// Notifications
-			case UINode\Constants::RABBIT_MQ_TRIGGERS_NOTIFICATIONS_CREATED_ENTITY_ROUTING_KEY:
-			case UINode\Constants::RABBIT_MQ_TRIGGERS_NOTIFICATIONS_UPDATED_ENTITY_ROUTING_KEY:
-			case UINode\Constants::RABBIT_MQ_TRIGGERS_NOTIFICATIONS_DELETED_ENTITY_ROUTING_KEY:
+			case ModulesMetadata\Constants::MESSAGE_BUS_TRIGGERS_NOTIFICATIONS_CREATED_ENTITY_ROUTING_KEY:
+			case ModulesMetadata\Constants::MESSAGE_BUS_TRIGGERS_NOTIFICATIONS_UPDATED_ENTITY_ROUTING_KEY:
+			case ModulesMetadata\Constants::MESSAGE_BUS_TRIGGERS_NOTIFICATIONS_DELETED_ENTITY_ROUTING_KEY:
 				// Conditions
-			case UINode\Constants::RABBIT_MQ_TRIGGERS_CONDITIONS_CREATED_ENTITY_ROUTING_KEY:
-			case UINode\Constants::RABBIT_MQ_TRIGGERS_CONDITIONS_UPDATED_ENTITY_ROUTING_KEY:
-			case UINode\Constants::RABBIT_MQ_TRIGGERS_CONDITIONS_DELETED_ENTITY_ROUTING_KEY:
+			case ModulesMetadata\Constants::MESSAGE_BUS_TRIGGERS_CONDITIONS_CREATED_ENTITY_ROUTING_KEY:
+			case ModulesMetadata\Constants::MESSAGE_BUS_TRIGGERS_CONDITIONS_UPDATED_ENTITY_ROUTING_KEY:
+			case ModulesMetadata\Constants::MESSAGE_BUS_TRIGGERS_CONDITIONS_DELETED_ENTITY_ROUTING_KEY:
 				$result = $this->sender->sendEntity(
 					'Exchange:',
 					[
 						'routing_key' => $routingKey,
-						'origin'      => UINode\Constants::NODE_TRIGGERS_ORIGIN,
+						'origin'      => ModulesMetadata\Constants::MODULE_TRIGGERS_ORIGIN,
 						'data'        => $this->dataToArray($message),
 					]
 				);
@@ -98,7 +97,7 @@ final class TriggersNodeMessageHandler extends MessageHandler
 		if ($result) {
 			$this->logger->info('[CONSUMER] Successfully consumed entity message', [
 				'routing_key' => $routingKey,
-				'origin'      => UINode\Constants::NODE_TRIGGERS_ORIGIN,
+				'origin'      => ModulesMetadata\Constants::MODULE_TRIGGERS_ORIGIN,
 				'data'        => $this->dataToArray($message),
 			]);
 		}
@@ -111,26 +110,26 @@ final class TriggersNodeMessageHandler extends MessageHandler
 	 */
 	protected function getSchemaFile(string $routingKey, string $origin): ?string
 	{
-		if ($origin === UINode\Constants::NODE_TRIGGERS_ORIGIN) {
+		if ($origin === ModulesMetadata\Constants::MODULE_TRIGGERS_ORIGIN) {
 			switch ($routingKey) {
-				case UINode\Constants::RABBIT_MQ_TRIGGERS_CREATED_ENTITY_ROUTING_KEY:
-				case UINode\Constants::RABBIT_MQ_TRIGGERS_UPDATED_ENTITY_ROUTING_KEY:
-				case UINode\Constants::RABBIT_MQ_TRIGGERS_DELETED_ENTITY_ROUTING_KEY:
+				case ModulesMetadata\Constants::MESSAGE_BUS_TRIGGERS_CREATED_ENTITY_ROUTING_KEY:
+				case ModulesMetadata\Constants::MESSAGE_BUS_TRIGGERS_UPDATED_ENTITY_ROUTING_KEY:
+				case ModulesMetadata\Constants::MESSAGE_BUS_TRIGGERS_DELETED_ENTITY_ROUTING_KEY:
 					return ModulesMetadata\Constants::RESOURCES_FOLDER . '/schemas/triggers-module/entity.trigger.json';
 
-				case UINode\Constants::RABBIT_MQ_TRIGGERS_ACTIONS_CREATED_ENTITY_ROUTING_KEY:
-				case UINode\Constants::RABBIT_MQ_TRIGGERS_ACTIONS_UPDATED_ENTITY_ROUTING_KEY:
-				case UINode\Constants::RABBIT_MQ_TRIGGERS_ACTIONS_DELETED_ENTITY_ROUTING_KEY:
+				case ModulesMetadata\Constants::MESSAGE_BUS_TRIGGERS_ACTIONS_CREATED_ENTITY_ROUTING_KEY:
+				case ModulesMetadata\Constants::MESSAGE_BUS_TRIGGERS_ACTIONS_UPDATED_ENTITY_ROUTING_KEY:
+				case ModulesMetadata\Constants::MESSAGE_BUS_TRIGGERS_ACTIONS_DELETED_ENTITY_ROUTING_KEY:
 					return ModulesMetadata\Constants::RESOURCES_FOLDER . '/schemas/triggers-module/entity.action.json';
 
-				case UINode\Constants::RABBIT_MQ_TRIGGERS_NOTIFICATIONS_CREATED_ENTITY_ROUTING_KEY:
-				case UINode\Constants::RABBIT_MQ_TRIGGERS_NOTIFICATIONS_UPDATED_ENTITY_ROUTING_KEY:
-				case UINode\Constants::RABBIT_MQ_TRIGGERS_NOTIFICATIONS_DELETED_ENTITY_ROUTING_KEY:
+				case ModulesMetadata\Constants::MESSAGE_BUS_TRIGGERS_NOTIFICATIONS_CREATED_ENTITY_ROUTING_KEY:
+				case ModulesMetadata\Constants::MESSAGE_BUS_TRIGGERS_NOTIFICATIONS_UPDATED_ENTITY_ROUTING_KEY:
+				case ModulesMetadata\Constants::MESSAGE_BUS_TRIGGERS_NOTIFICATIONS_DELETED_ENTITY_ROUTING_KEY:
 					return ModulesMetadata\Constants::RESOURCES_FOLDER . '/schemas/triggers-module/entity.notification.json';
 
-				case UINode\Constants::RABBIT_MQ_TRIGGERS_CONDITIONS_CREATED_ENTITY_ROUTING_KEY:
-				case UINode\Constants::RABBIT_MQ_TRIGGERS_CONDITIONS_UPDATED_ENTITY_ROUTING_KEY:
-				case UINode\Constants::RABBIT_MQ_TRIGGERS_CONDITIONS_DELETED_ENTITY_ROUTING_KEY:
+				case ModulesMetadata\Constants::MESSAGE_BUS_TRIGGERS_CONDITIONS_CREATED_ENTITY_ROUTING_KEY:
+				case ModulesMetadata\Constants::MESSAGE_BUS_TRIGGERS_CONDITIONS_UPDATED_ENTITY_ROUTING_KEY:
+				case ModulesMetadata\Constants::MESSAGE_BUS_TRIGGERS_CONDITIONS_DELETED_ENTITY_ROUTING_KEY:
 					return ModulesMetadata\Constants::RESOURCES_FOLDER . '/schemas/triggers-module/entity.condition.json';
 			}
 		}
