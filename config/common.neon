@@ -17,25 +17,13 @@
 parameters:
 	origin: com.fastybird.ui-module
 
-	rabbitmq:
-		queueName: fb.ui.node.exchange
-		routing:
-			- fb.bus.entity.*.device	# Entities
-			- fb.bus.entity.*.device.*	# Entities
-			- fb.bus.entity.*.channel	# Entities
-			- fb.bus.entity.*.channel.*	# Entities
-			- fb.bus.entity.*.account	# Entities
-			- fb.bus.entity.*.email		# Entities
-			- fb.bus.entity.*.identity	# Entities
-			- fb.bus.entity.*.trigger	# Entities
-			- fb.bus.entity.*.trigger.*	# Entities
-
 #########################
 # Used Nette extensions #
 #########################
 
 extensions:
 	contributteTranslation				: Contributte\Translation\DI\TranslationExtension
+	contributeEvents					: Contributte\EventDispatcher\DI\EventDispatcherExtension
 	nettrineAnnotations					: Nettrine\Annotations\DI\AnnotationsExtension
 	nettrineCache						: Nettrine\Cache\DI\CacheExtension
 	nettrineDbal						: Nettrine\DBAL\DI\DbalExtension
@@ -44,6 +32,7 @@ extensions:
 	nettrineOrmConsole					: Nettrine\ORM\DI\OrmConsoleExtension
 	nettrineOrmCache					: Nettrine\ORM\DI\OrmCacheExtension
 	fbDateTimeFactory					: FastyBird\DateTimeFactory\DI\DateTimeFactoryExtension
+	fbApplicationExchange				: FastyBird\ApplicationExchange\DI\ApplicationExchangeExtension
 	fbSimpleAuth						: FastyBird\SimpleAuth\DI\SimpleAuthExtension
 	fbDatabase							: FastyBird\Database\DI\DatabaseExtension
 	fbJsonApi							: FastyBird\JsonApi\DI\JsonApiExtension
@@ -86,10 +75,6 @@ fbRabbitMqPlugin:
 			vhost: %exchange.vhost%
 			username: %exchange.username%
 			password: %exchange.password%
-		queue:
-			name: %rabbitmq.queueName%
-		routing:
-			keys: %rabbitmq.routing%
 
 # Web server
 #################
@@ -174,7 +159,6 @@ decorator:
 	FastyBird\WebServer\Commands\HttpServerCommand:
 		setup:
 			- '$onBeforeServerStart[]' = @FastyBird\UINode\Events\ServerBeforeStartHandler
-			- '$onAfterServerStart[]' = @FastyBird\UINode\Events\ServerAfterStartHandler
 
 	FastyBird\RabbitMqPlugin\Exchange:
 		setup:
@@ -186,25 +170,9 @@ services:
 
 	- {factory: FastyBird\UINode\Commands\InitializeCommand}
 
-	# Message bus messages handlers
-	###############################
-
-	- {factory: FastyBird\UINode\Consumers\AuthModuleMessageHandler}
-
-	- {factory: FastyBird\UINode\Consumers\DevicesModuleMessageHandler}
-
-	- {factory: FastyBird\UINode\Consumers\TriggersModuleMessageHandler}
-
 	# Node events
 	#############
 
 	- {factory: FastyBird\UINode\Events\AfterConsumeHandler}
 
 	- {factory: FastyBird\UINode\Events\ServerBeforeStartHandler}
-
-	- {factory: FastyBird\UINode\Events\ServerAfterStartHandler}
-
-	# Sockets services
-	##################
-
-	- {factory: FastyBird\UINode\Sockets\Publisher}

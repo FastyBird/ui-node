@@ -4,9 +4,7 @@ namespace Tests\Cases;
 
 use FastyBird\Bootstrap\Boot;
 use FastyBird\UINode\Commands;
-use FastyBird\UINode\Consumers;
 use FastyBird\UINode\Events;
-use FastyBird\UINode\Sockets;
 use Ninjify\Nunjuck\TestCase\BaseTestCase;
 use Tester\Assert;
 
@@ -31,15 +29,8 @@ final class ServicesTest extends BaseTestCase
 
 		Assert::notNull($container->getByType(Commands\InitializeCommand::class));
 
-		Assert::notNull($container->getByType(Consumers\AuthModuleMessageHandler::class));
-		Assert::notNull($container->getByType(Consumers\DevicesModuleMessageHandler::class));
-		Assert::notNull($container->getByType(Consumers\TriggersModuleMessageHandler::class));
-
 		Assert::notNull($container->getByType(Events\AfterConsumeHandler::class));
 		Assert::notNull($container->getByType(Events\ServerBeforeStartHandler::class));
-		Assert::notNull($container->getByType(Events\ServerAfterStartHandler::class));
-
-		Assert::notNull($container->getByType(Sockets\Publisher::class));
 	}
 
 }
