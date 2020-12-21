@@ -155,24 +155,8 @@ nettrineOrmAnnotations:
 # Node services definitions #
 #############################
 
-decorator:
-	FastyBird\WebServer\Commands\HttpServerCommand:
-		setup:
-			- '$onBeforeServerStart[]' = @FastyBird\UINode\Events\ServerBeforeStartHandler
-
-	FastyBird\RabbitMqPlugin\Exchange:
-		setup:
-			- '$onAfterConsumeMessage[]' = @FastyBird\UINode\Events\AfterConsumeHandler
-
 services:
 	# Console commands
 	##################
 
 	- {factory: FastyBird\UINode\Commands\InitializeCommand}
-
-	# Node events
-	#############
-
-	- {factory: FastyBird\UINode\Events\AfterConsumeHandler}
-
-	- {factory: FastyBird\UINode\Events\ServerBeforeStartHandler}
