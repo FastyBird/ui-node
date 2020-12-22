@@ -2527,12 +2527,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FastyBird/ui-module.git",
-                "reference": "a92522dd9e5500ed96a50ef3c5929bf0005aa655"
+                "reference": "ce1b9ca978a3ec59bfc1b7d93356b1bd6c1bd0e5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FastyBird/ui-module/zipball/a92522dd9e5500ed96a50ef3c5929bf0005aa655",
-                "reference": "a92522dd9e5500ed96a50ef3c5929bf0005aa655",
+                "url": "https://api.github.com/repos/FastyBird/ui-module/zipball/ce1b9ca978a3ec59bfc1b7d93356b1bd6c1bd0e5",
+                "reference": "ce1b9ca978a3ec59bfc1b7d93356b1bd6c1bd0e5",
                 "shasum": ""
             },
             "require": {
@@ -2613,7 +2613,7 @@
                 "issues": "https://github.com/FastyBird/ui-module/issues",
                 "source": "https://github.com/FastyBird/ui-module/tree/master"
             },
-            "time": "2020-12-21T19:30:49+00:00"
+            "time": "2020-12-22T10:40:13+00:00"
         },
         {
             "name": "fastybird/web-server",
